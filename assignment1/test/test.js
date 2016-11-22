@@ -10,14 +10,20 @@ var should = chai.should();
 
 describe('factoryTest', function(){
     var factory = new SpreadsheetFactory();
+    var sut;
 
-    it('spreadSheet function should return object constructed from Spreadsheet constructor', function () {
-        let sut = factory.spreadsheet();
+    it('should return a new Spreadsheet', function () {
+        sut = factory.spreadsheet();
         sut.constructor.should.equal(new Spreadsheet().constructor);
     });
 
-    it('cell function should return object constructed from Spreadsheet constructor', function () {
-        let sut = factory.cell();
+    it("should return a new Row", function() {
+        sut = factory.row();
+    });
+
+    it('should return a new Cell', function () {
+        sut = factory.cell();
         sut.constructor.should.equal(new Cell().constructor);
     });
+
 });
