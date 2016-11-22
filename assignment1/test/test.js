@@ -1,6 +1,15 @@
+'use strict';
+//var chai = require('chai');
+//var sut = require('sutPath'); // Require the System to test
 
-var assert = chai.assert();
+var expect = chai.expect;
+var assert = chai.assert;
+var should = chai.should();
 
-var foo = "String";
-
-assert.equal(foo, 'String');
+describe('Test returnInput', function(){
+    it('TestName', function () {
+        let INPUT,
+        EXPECTED;
+        functionToTest(INPUT).should.equal(EXPECTED);
+    });
+});
