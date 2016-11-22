@@ -12,6 +12,7 @@ SpreadsheetFactory.prototype.spreadsheet = function () {
 };
 
 SpreadsheetFactory.prototype.cell = function () {
+    return new Cell();
 };
 
 module.exports = SpreadsheetFactory;
