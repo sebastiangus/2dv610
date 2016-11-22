@@ -11,6 +11,10 @@ SpreadsheetFactory.prototype.spreadsheet = function () {
     return new Spreadsheet();
 };
 
+SpreadsheetFactory.prototype.row = function () {
+
+};
+
 SpreadsheetFactory.prototype.cell = function () {
     return new Cell();
 };
