@@ -18,5 +18,6 @@ describe('factoryTest', function(){
 
     it('cell function should return object constructed from Spreadsheet constructor', function () {
         let sut = factory.cell();
+        sut.constructor.should.equal(new Cell().constructor);
     });
 });
