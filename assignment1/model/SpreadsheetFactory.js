@@ -7,6 +7,7 @@ function SpreadsheetFactory(){
 }
 
 SpreadsheetFactory.prototype.spreadsheet = function () {
+    return new Spreadsheet();
 };
 
 module.exports = SpreadsheetFactory;
