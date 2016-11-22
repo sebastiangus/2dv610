@@ -1,8 +1,8 @@
-/**
- * Created by sebastiangustavsson on 2016-11-22.
- */
+'use strict';
+
 var Spreadsheet = require('../model/Spreadsheet');
 var Cell = require('../model/Cell');
+var Row = require('../model/Row');
 
 function SpreadsheetFactory(){
 }
@@ -12,7 +12,7 @@ SpreadsheetFactory.prototype.spreadsheet = function () {
 };
 
 SpreadsheetFactory.prototype.row = function () {
-
+    return new Row();
 };
 
 SpreadsheetFactory.prototype.cell = function () {
