@@ -19,6 +19,7 @@ describe('factoryTest', function(){
 
     it("should return a new Row", function() {
         sut = factory.row();
+        sut.constructor.should.equal(new Cell().constructor);
     });
 
     it('should return a new Cell', function () {
