@@ -1,5 +1,7 @@
 'use strict';
 
+var Row = require('../model/Row');
+
 function Spreadsheet() {
     this.rows = [];
 }
@@ -10,7 +12,7 @@ Spreadsheet.prototype.getRows = function () {
 };
 
 Spreadsheet.prototype.addRow = function () {
-    this.rows.push("asd");
+    this.rows.push(new Row());
 };
 
 module.exports = Spreadsheet;
