@@ -29,7 +29,7 @@ describe('Spreadsheet', function(){
         sut.should.have.property('rows');
     });
 
-    it('rows attribute should have length one', function () {
+    it('rows attribute should have length one after addRow', function () {
         sut.addRow();
         sut.rows.should.have.length(1);
     });
@@ -39,5 +39,4 @@ describe('Spreadsheet', function(){
         let array = sut.getRows();
         array[0].should.be.instanceOf(Row);
     });
-
 });
