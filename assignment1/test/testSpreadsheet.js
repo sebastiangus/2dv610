@@ -13,6 +13,10 @@ var should = chai.should();
 describe('Spreadsheet', function(){
     var sut = new Spreadsheet();
 
+    afterEach(function () {
+        sut = new Spreadsheet();
+    });
+
     it('Spreadsheet has getRows property', function () {
         expect(sut).to.have.property('getRows');
     });
@@ -30,5 +34,10 @@ describe('Spreadsheet', function(){
         sut.rows.should.have.length(1);
     });
 
+    it('getRows array contains Row objects', function (){
+        sut.addRow();
+        let array = sut.getRows();
+        array[0].should.be.instanceOf(Row);
+    });
 
 });
