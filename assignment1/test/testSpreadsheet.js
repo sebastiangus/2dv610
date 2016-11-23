@@ -27,6 +27,7 @@ describe('Spreadsheet', function(){
 
     it('rows attribute should have length one', function () {
         sut.addRow();
+        sut.rows.should.have.length(1);
     });
 
 
