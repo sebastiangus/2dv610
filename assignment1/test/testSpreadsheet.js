@@ -12,8 +12,11 @@ var should = chai.should();
 describe('Spreadsheet', function(){
     var sut = new Spreadsheet();
 
-    it('should return empty rows Array', function () {
-        sut.getRows.should.be.a('function');
+    it('Spreadsheet has getRows property', function () {
+        expect(sut).to.have.property('getRows');
     });
 
+    it('getRows method returns empty array', function () {
+        expect(sut.getRows()).to.be.a('array')
+    });
 });
