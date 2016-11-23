@@ -18,4 +18,8 @@ describe('Row tests', function(){
     it('row has propety cells', function () {
         sut.should.have.property('cells');
     });
+
+    it('addCell should add element to cells', function () {
+        sut.addCell();
+    });
 });
