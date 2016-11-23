@@ -27,6 +27,11 @@ describe('Row tests', function(){
 
     it('addCell should add element of type Cell to cells array', function () {
        sut.addCell();
-        expect(sut.cells[0]).to.be.instanceOf(Cell)
+        expect(sut.cells[0]).to.be.instanceOf(Cell);
     });
+
+    it('cells array should be 5 in length', function () {
+        sut.addCell();
+        expect(sut.cells).length(5);
+    })
 });
