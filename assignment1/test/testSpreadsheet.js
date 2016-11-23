@@ -1,5 +1,6 @@
 'use strict';
 var chai = require('chai');
+var sinon = require('sinon');
 var SpreadsheetFactory = require('../model/SpreadsheetFactory'); // Require the System to test
 var Spreadsheet = require('../model/Spreadsheet'); // Require the System to test
 var Cell = require('../model/Cell');
@@ -19,4 +20,15 @@ describe('Spreadsheet', function(){
     it('getRows method returns empty array', function () {
         expect(sut.getRows()).to.be.a('array')
     });
+
+    it('should have property rows', function () {
+        sut.should.have.property('rows');
+    });
+
+    it('rows attribute should have length one', function () {
+        sut.addRow();
+        sut.rows.should.have.length(1);
+    });
+
+
 });
