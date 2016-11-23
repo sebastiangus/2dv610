@@ -31,7 +31,7 @@ describe('Row tests', function(){
     });
 
     it('cells array should be 5 in length', function () {
-        sut.addCell();
+        sut.addCell(5);
         expect(sut.cells).length(5);
     })
 });
