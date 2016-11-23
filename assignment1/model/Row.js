@@ -5,8 +5,6 @@ function Row() {
 }
 
 Row.prototype.addCell = function () {
-
 };
-
 
 module.exports = Row;

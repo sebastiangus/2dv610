@@ -21,5 +21,6 @@ describe('Row tests', function(){
 
     it('addCell should add element to cells', function () {
         sut.addCell();
+        expect(sut.cells).length(1);
     });
 });
