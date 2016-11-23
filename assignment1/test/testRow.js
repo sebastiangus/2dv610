@@ -3,6 +3,7 @@
  */
 var chai =require('chai');
 var Row = require('../model/Row');
+var Cell = require('../model/Cell');
 
 var expect = chai.expect;
 var assert = chai.assert;
@@ -22,5 +23,10 @@ describe('Row tests', function(){
     it('addCell should add element to cells', function () {
         sut.addCell();
         expect(sut.cells).length(1);
+    });
+
+    it('addCell should add element of type Cell to cells array', function () {
+       sut.addCell();
+        expect(sut.cells[0]).to.be.instanceOf(Cell)
     });
 });
