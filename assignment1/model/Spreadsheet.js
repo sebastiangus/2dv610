@@ -10,7 +10,7 @@ Spreadsheet.prototype.getRows = function () {
 };
 
 Spreadsheet.prototype.addRow = function () {
-
+    this.rows.push(1);
 };
 
 module.exports = Spreadsheet;
