@@ -1,2 +1,4 @@
 2dv610/node_modules/*
 assignment1/node_modules/*
+browserified/
+chromedriver
