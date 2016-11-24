@@ -15,7 +15,11 @@ describe('Row tests', function(){
         sut = new Cell();
     });
 
-    it('row has propety value', function () {
+    it('cell has propety value', function () {
         sut.should.have.property('value');
+    });
+
+    it('cell setValue sets value',function () {
+        sut.setValue(5);
     });
 });
