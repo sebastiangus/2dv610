@@ -22,4 +22,9 @@ describe('Row tests', function(){
     it('cell setValue sets value',function () {
         sut.setValue(5);
     });
+
+    it('cell getValue returns value 5', function () {
+        sut.setValue(5);
+        expect(sut.getValue()).to.equal(5);
+    })
 });

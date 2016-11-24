@@ -8,4 +8,8 @@ Cell.prototype.setValue = function (value) {
     this.value = value;
 };
 
+Cell.prototype.getValue = function () {
+
+};
+
 module.exports = Cell;
