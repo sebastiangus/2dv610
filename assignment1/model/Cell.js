@@ -9,7 +9,7 @@ Cell.prototype.setValue = function (value) {
 };
 
 Cell.prototype.getValue = function () {
-
+    return this.value;
 };
 
 module.exports = Cell;
