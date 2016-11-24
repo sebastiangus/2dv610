@@ -1,6 +1,5 @@
-/**
- * Created by sebastiangustavsson on 2016-11-24.
- */
+//http://chaijs.com/plugins/chai-webdriver/ for setup instructions
+
 var sw = require('selenium-webdriver');
 var driver = new sw.Builder()
     .withCapabilities(sw.Capabilities.chrome())
@@ -15,7 +14,7 @@ var should = chai.should();
 
 
 describe('DOM tests', function () {
-   
+    
 });
 
 
