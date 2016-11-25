@@ -1,7 +1,7 @@
 /**
  * Created by sebastiangustavsson on 2016-11-23.
  */
-var chai =require('chai');
+var chai = require('chai');
 var Cell = require('../model/Cell');
 
 var expect = chai.expect;
