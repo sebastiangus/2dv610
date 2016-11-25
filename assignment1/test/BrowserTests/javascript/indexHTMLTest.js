@@ -7,7 +7,8 @@ chai.use(require('chai-dom'));
 describe('DOM tests', function () {
 
     it('Class-test', function () {
-        document.querySelector('#hi').should.have.text('Hi');
+        expect(document.querySelector('link[rel=import]')).to.have.html('template');
+        console.log(importedHTML);
     });
 });
 
