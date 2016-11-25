@@ -1,4 +1,81 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+function Cell() {
+    this.value = null;
+}
+
+Cell.prototype.setValue = function (value) {
+    this.value = value;
+};
+
+Cell.prototype.getValue = function () {
+    return this.value;
+};
+
+module.exports = Cell;
+},{}],2:[function(require,module,exports){
+'use strict';
+var Cell = require('../model/Cell');
+
+function Row() {
+    this.cells = [];
+}
+
+Row.prototype.addCell = function (number) {
+    var number = number || 1;
+
+    for(let i = 0; i < number; i++){
+        this.cells.push(new Cell());
+    }
+};
+
+module.exports = Row;
+
+},{"../model/Cell":1}],3:[function(require,module,exports){
+'use strict';
+
+var Row = require('../model/Row');
+
+function Spreadsheet() {
+    this.rows = [];
+}
+
+
+Spreadsheet.prototype.getRows = function () {
+    return this.rows;
+};
+
+Spreadsheet.prototype.addRow = function () {
+    this.rows.push(new Row());
+};
+
+module.exports = Spreadsheet;
+},{"../model/Row":2}],4:[function(require,module,exports){
+'use strict';
+
+var Spreadsheet = require('../model/Spreadsheet');
+var Cell = require('../model/Cell');
+var Row = require('../model/Row');
+
+function SpreadsheetFactory(){
+}
+
+SpreadsheetFactory.prototype.spreadsheet = function () {
+    return new Spreadsheet();
+};
+
+SpreadsheetFactory.prototype.row = function () {
+    return new Row();
+};
+
+SpreadsheetFactory.prototype.cell = function () {
+    return new Cell();
+};
+
+module.exports = SpreadsheetFactory;
+
+},{"../model/Cell":1,"../model/Row":2,"../model/Spreadsheet":3}],5:[function(require,module,exports){
 (function(chaiDom) {
   if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
     module.exports = chaiDom
@@ -276,11 +353,12 @@
   )
 }))
 
-},{}],2:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //http://chaijs.com/plugins/chai-webdriver/ for setup instructions
 
 var expect = chai.expect;
 var should = chai.should();
+var Factory = require('../../../model/SpreadsheetFactory');
 chai.use(require('chai-dom'));
 
 describe('cell-template tests', function () {
@@ -301,6 +379,19 @@ describe('row-template tests', function () {
     });
 });
 
+describe('spreadsheet-template tests', function () {
+    it('html test', function () {
+        var importedHtml = document.querySelector('link[rel=import]');
+        var content = importedHtml.import;
+        content.querySelector('#spreadsheet-template').should.have.html('<div class="spreadsheet"></div>');
+    });
 
+    it('adding spreadsheet object adds spreadsheet-template to dom',function () {
+        var factory = new Factory();
+        var spread = factory.spreadsheet();
+        spread.appendToDOM();
+        expect(document.querySelector('.spreadsheet')).to.exist;
+    });
+});
 
-},{"chai-dom":1}]},{},[2]);
+},{"../../../model/SpreadsheetFactory":4,"chai-dom":5}]},{},[6]);

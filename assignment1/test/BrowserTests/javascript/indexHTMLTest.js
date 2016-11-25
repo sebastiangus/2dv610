@@ -2,6 +2,7 @@
 
 var expect = chai.expect;
 var should = chai.should();
+var Factory = require('../../../model/SpreadsheetFactory');
 chai.use(require('chai-dom'));
 
 describe('cell-template tests', function () {
@@ -22,4 +23,17 @@ describe('row-template tests', function () {
     });
 });
 
+describe('spreadsheet-template tests', function () {
+    it('html test', function () {
+        var importedHtml = document.querySelector('link[rel=import]');
+        var content = importedHtml.import;
+        content.querySelector('#spreadsheet-template').should.have.html('<div class="spreadsheet"></div>');
+    });
 
+    it('adding spreadsheet object adds spreadsheet-template to dom',function () {
+        var factory = new Factory();
+        var spread = factory.spreadsheet();
+        spread.appendToDOM();
+        expect(document.querySelector('.spreadsheet')).to.exist;
+    });
+});
