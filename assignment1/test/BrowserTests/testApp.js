@@ -286,8 +286,10 @@ chai.use(require('chai-dom'));
 describe('DOM tests', function () {
 
     it('Class-test', function () {
-        expect(document.querySelector('link[rel=import]')).to.have.html('template');
-        console.log(importedHTML);
+        //use import to get html-document
+        var importedHtml = document.querySelector('link[rel=import]');
+        var content = importedHtml.import;
+        content.querySelector('#cell-template').should.have.html('<div class="cell"></div>');
     });
 });
 
