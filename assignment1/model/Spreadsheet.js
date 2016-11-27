@@ -17,7 +17,8 @@ Spreadsheet.prototype.addRow = function () {
 };
 
 
+Spreadsheet.prototype.appendToSelector = function(){
 
-
+};
 
 module.exports = Spreadsheet;
