@@ -46,9 +46,14 @@ Spreadsheet.prototype.getRows = function () {
     return this.rows;
 };
 
+
 Spreadsheet.prototype.addRow = function () {
     this.rows.push(new Row());
 };
+
+
+
+
 
 module.exports = Spreadsheet;
 },{"../model/Row":2}],4:[function(require,module,exports){
@@ -389,7 +394,7 @@ describe('spreadsheet-template tests', function () {
     it('adding spreadsheet object adds spreadsheet-template to dom',function () {
         var factory = new Factory();
         var spread = factory.spreadsheet();
-        spread.appendToDOM();
+        spread.appendToSelector();
         expect(document.querySelector('.spreadsheet')).to.exist;
     });
 });
