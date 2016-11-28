@@ -20,11 +20,10 @@ Spreadsheet.prototype.addRow = function () {
 
 Spreadsheet.prototype.appendToSelector = function(selector){
     var _selector = selector || 'body';
-    var importedHtml = DomController.getImportedTemplates();
-    var templates = importedHtml.querySelector('#spreadsheet-template').content;
-    var node = document.importNode(templates, true);
+    var template = DomController.getTemplateNodeById('#spreadsheet-template');
+    var node = document.importNode(template, true);
     var appendToElement = document.querySelector(_selector);
-    appendToElement.appendChild(templates);
+    appendToElement.appendChild(node);
 };
 
 module.exports = Spreadsheet;

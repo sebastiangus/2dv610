@@ -41,12 +41,13 @@ describe('spreadsheet-template tests', function () {
 
 
 describe('DomController tests', function () {
-    it('getImportedTemplates contains template tag',function () {
+    it('getImportedTemplates should contain template tag',function () {
         var templates = domController.getImportedTemplates();
         expect(templates.querySelector('template'));
     });
 
-    it('selectTemplateToImport returns html element', function () {
-        var element = domController.selectTemplateToImport();
-    })
+    it('getTemplateNodeById(\'#spreadsheet\') should return instanceOf Node', function () {
+        var template = domController.getTemplateNodeById('#spreadsheet-template');
+        template.should.be.instanceOf(Node)
+    });
 });

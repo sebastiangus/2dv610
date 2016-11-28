@@ -9,4 +9,9 @@ DomController.prototype.getImportedTemplates = function () {
     return importedHtml;
 };
 
+DomController.prototype.getTemplateNodeById = function (selector) {
+    var templates = this.getImportedTemplates();
+    return templates.querySelector(selector).content;
+};
+
 module.exports = new DomController();

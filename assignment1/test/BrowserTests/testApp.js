@@ -10,6 +10,11 @@ DomController.prototype.getImportedTemplates = function () {
     return importedHtml;
 };
 
+DomController.prototype.getTemplateNodeById = function (selector) {
+    var templates = this.getImportedTemplates();
+    return templates.querySelector(selector).content;
+};
+
 module.exports = new DomController();
 },{}],2:[function(require,module,exports){
 'use strict';
@@ -68,11 +73,10 @@ Spreadsheet.prototype.addRow = function () {
 
 Spreadsheet.prototype.appendToSelector = function(selector){
     var _selector = selector || 'body';
-    var importedHtml = DomController.getImportedTemplates();
-    var templates = importedHtml.querySelector('#spreadsheet-template').content;
-    var node = document.importNode(templates, true);
+    var template = DomController.getTemplateNodeById('#spreadsheet-template');
+    var node = document.importNode(template, true);
     var appendToElement = document.querySelector(_selector);
-    appendToElement.appendChild(templates);
+    appendToElement.appendChild(node);
 };
 
 module.exports = Spreadsheet;
@@ -422,13 +426,14 @@ describe('spreadsheet-template tests', function () {
 
 
 describe('DomController tests', function () {
-    it('getImportedTemplates contains template tag',function () {
+    it('getImportedTemplates should contain template tag',function () {
         var templates = domController.getImportedTemplates();
         expect(templates.querySelector('template'));
     });
 
-    it('selectTemplateToImport returns html element', function () {
-        var element = domController.selectTemplateToImport();
-    })
+    it('getTemplateNodeById(\'#spreadsheet\') should return instanceOf Node', function () {
+        var template = domController.getTemplateNodeById('#spreadsheet-template');
+        template.should.be.instanceOf(Node)
+    });
 });
 },{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"chai-dom":6}]},{},[7]);
