@@ -34,6 +34,6 @@ describe('spreadsheet-template tests', function () {
         var factory = new Factory();
         var spread = factory.spreadsheet();
         spread.appendToSelector();
-        //expect(document.querySelector('.spreadsheet')).to.exist;
+        expect(document.querySelector('.spreadsheet')).to.exist;
     });
 });

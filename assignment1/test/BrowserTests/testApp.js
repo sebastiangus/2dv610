@@ -52,8 +52,14 @@ Spreadsheet.prototype.addRow = function () {
 };
 
 
-Spreadsheet.prototype.appendToSelector = function(){
-
+Spreadsheet.prototype.appendToSelector = function(selector){
+    var _selector = selector || 'body';
+    var templates = document.querySelector('link[rel=import]');
+    var importedHtml = templates.import;
+    templates = importedHtml.querySelector('#spreadsheet-template').content;
+    var node = document.importNode(templates, true);
+    var appendToElement = document.querySelector(_selector);
+    appendToElement.appendChild(templates);
 };
 
 module.exports = Spreadsheet;
@@ -396,7 +402,7 @@ describe('spreadsheet-template tests', function () {
         var factory = new Factory();
         var spread = factory.spreadsheet();
         spread.appendToSelector();
-        //expect(document.querySelector('.spreadsheet')).to.exist;
+        expect(document.querySelector('.spreadsheet')).to.exist;
     });
 });
 
