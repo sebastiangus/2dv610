@@ -38,14 +38,18 @@ module.exports = Cell;
 'use strict';
 var Cell = require('../model/Cell');
 
-function Row() {
+function Row(nCells) {
+    var _nCells = typeof nCells === 'number' ? nCells : 1;
+
     this.cells = [];
+
+    this.addCell(_nCells);
 }
 
-Row.prototype.addCell = function (number) {
-    var number = number || 1;
+Row.prototype.addCell = function (nCells) {
+    var _nCells = nCells || 1;
 
-    for(let i = 0; i < number; i++){
+    for(let i = 0; i < _nCells; i += 1){
         this.cells.push(new Cell());
     }
 };
@@ -58,13 +62,13 @@ module.exports = Row;
 var Row = require('../model/Row');
 var DomController = require('../controller/DomController');
 
-function Spreadsheet(nRows) {
+function Spreadsheet(nRows, nCols) {
     console.log(typeof  nRows);
     var _nRows = typeof nRows === 'number' ? nRows : 1;
-    console.log(_nRows);
+    var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];
 
-    this.addRow(_nRows);
+    this.addRow(_nRows, _nCols);
 }
 
 
@@ -73,9 +77,9 @@ Spreadsheet.prototype.getRows = function () {
 };
 
 
-Spreadsheet.prototype.addRow = function (nRows) {
+Spreadsheet.prototype.addRow = function (nRows, nCols) {
     for(let i = 0; i < nRows; i += 1) {
-        this.rows.push(new Row());
+        this.rows.push(new Row(nCols));
     }
 };
 

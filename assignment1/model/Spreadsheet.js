@@ -3,13 +3,13 @@
 var Row = require('../model/Row');
 var DomController = require('../controller/DomController');
 
-function Spreadsheet(nRows) {
+function Spreadsheet(nRows, nCols) {
     console.log(typeof  nRows);
     var _nRows = typeof nRows === 'number' ? nRows : 1;
-    console.log(_nRows);
+    var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];
 
-    this.addRow(_nRows);
+    this.addRow(_nRows, _nCols);
 }
 
 
@@ -18,9 +18,9 @@ Spreadsheet.prototype.getRows = function () {
 };
 
 
-Spreadsheet.prototype.addRow = function (nRows) {
+Spreadsheet.prototype.addRow = function (nRows, nCols) {
     for(let i = 0; i < nRows; i += 1) {
-        this.rows.push(new Row());
+        this.rows.push(new Row(nCols));
     }
 };
 
