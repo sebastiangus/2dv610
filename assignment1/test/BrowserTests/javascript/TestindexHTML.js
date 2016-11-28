@@ -45,4 +45,8 @@ describe('DomController tests', function () {
         var templates = domController.getImportedTemplates();
         expect(templates.querySelector('template'));
     });
+
+    it('selectTemplateToImport returns html element', function () {
+        var element = domController.selectTemplateToImport();
+    })
 });

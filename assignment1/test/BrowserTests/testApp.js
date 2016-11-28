@@ -426,5 +426,9 @@ describe('DomController tests', function () {
         var templates = domController.getImportedTemplates();
         expect(templates.querySelector('template'));
     });
+
+    it('selectTemplateToImport returns html element', function () {
+        var element = domController.selectTemplateToImport();
+    })
 });
 },{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"chai-dom":6}]},{},[7]);
