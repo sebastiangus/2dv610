@@ -1,4 +1,9 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/**
+ * Created by sebastiangustavsson on 2016-11-26.
+ */
+
+},{}],2:[function(require,module,exports){
 'use strict';
 
 function Cell() {
@@ -14,7 +19,7 @@ Cell.prototype.getValue = function () {
 };
 
 module.exports = Cell;
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 var Cell = require('../model/Cell');
 
@@ -32,7 +37,7 @@ Row.prototype.addCell = function (number) {
 
 module.exports = Row;
 
-},{"../model/Cell":1}],3:[function(require,module,exports){
+},{"../model/Cell":2}],4:[function(require,module,exports){
 'use strict';
 
 var Row = require('../model/Row');
@@ -63,7 +68,7 @@ Spreadsheet.prototype.appendToSelector = function(selector){
 };
 
 module.exports = Spreadsheet;
-},{"../model/Row":2}],4:[function(require,module,exports){
+},{"../model/Row":3}],5:[function(require,module,exports){
 'use strict';
 
 var Spreadsheet = require('../model/Spreadsheet');
@@ -87,7 +92,7 @@ SpreadsheetFactory.prototype.cell = function () {
 
 module.exports = SpreadsheetFactory;
 
-},{"../model/Cell":1,"../model/Row":2,"../model/Spreadsheet":3}],5:[function(require,module,exports){
+},{"../model/Cell":2,"../model/Row":3,"../model/Spreadsheet":4}],6:[function(require,module,exports){
 (function(chaiDom) {
   if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
     module.exports = chaiDom
@@ -365,12 +370,13 @@ module.exports = SpreadsheetFactory;
   )
 }))
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 //http://chaijs.com/plugins/chai-webdriver/ for setup instructions
 
 var expect = chai.expect;
 var should = chai.should();
 var Factory = require('../../../model/SpreadsheetFactory');
+var DomController = require('../../../controller/DomController');
 chai.use(require('chai-dom'));
 
 describe('cell-template tests', function () {
@@ -406,4 +412,14 @@ describe('spreadsheet-template tests', function () {
     });
 });
 
-},{"../../../model/SpreadsheetFactory":4,"chai-dom":5}]},{},[6]);
+
+describe('DomController tests', function () {
+    before(function () {
+       var domController = new DomController();
+    });
+
+    it('Get templates',function () {
+
+    });
+})
+},{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"chai-dom":6}]},{},[7]);

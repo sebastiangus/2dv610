@@ -3,6 +3,7 @@
 var expect = chai.expect;
 var should = chai.should();
 var Factory = require('../../../model/SpreadsheetFactory');
+var DomController = require('../../../controller/DomController');
 chai.use(require('chai-dom'));
 
 describe('cell-template tests', function () {
@@ -37,3 +38,14 @@ describe('spreadsheet-template tests', function () {
         expect(document.querySelector('.spreadsheet')).to.exist;
     });
 });
+
+
+describe('DomController tests', function () {
+    before(function () {
+       var domController = new DomController();
+    });
+
+    it('Get templates',function () {
+
+    });
+})
