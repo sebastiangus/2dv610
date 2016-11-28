@@ -4,7 +4,9 @@
 function DomController() {
 }
 
+DomController.prototype.getImportedTemplates = function () {
 
+};
 
 module.exports = DomController;
 },{}],2:[function(require,module,exports){
