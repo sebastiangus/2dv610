@@ -13,7 +13,6 @@ var should = chai.should();
 
 describe('DomController Test', function () {
     it('should return html-node', function () {
-        spreadFactory.spreadsheet().appendToDOM();
 
     });
 });

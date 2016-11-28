@@ -2,8 +2,9 @@
 'use strict';
 
 function DomController() {
-
 }
+
+
 
 module.exports = DomController;
 },{}],2:[function(require,module,exports){
@@ -417,12 +418,11 @@ describe('spreadsheet-template tests', function () {
 
 
 describe('DomController tests', function () {
-    before(function () {
-       var domController = new DomController();
-    });
+    var domController = new DomController();
+
 
     it('Get templates',function () {
-
+        domController.getImportedTemplates();
     });
 })
 },{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"chai-dom":6}]},{},[7]);

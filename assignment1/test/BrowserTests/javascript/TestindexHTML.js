@@ -41,11 +41,10 @@ describe('spreadsheet-template tests', function () {
 
 
 describe('DomController tests', function () {
-    before(function () {
-       var domController = new DomController();
-    });
+    var domController = new DomController();
+
 
     it('Get templates',function () {
-
+        domController.getImportedTemplates();
     });
 })
