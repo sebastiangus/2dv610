@@ -1,3 +1,7 @@
-/**
- * Created by sebastiangustavsson on 2016-11-26.
- */
+'use strict';
+
+function DomController() {
+
+}
+
+module.exports = DomController;
