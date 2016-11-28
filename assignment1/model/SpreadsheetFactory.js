@@ -8,7 +8,7 @@ function SpreadsheetFactory(){
 }
 
 SpreadsheetFactory.prototype.spreadsheet = function () {
-    return new Spreadsheet();
+    return new Spreadsheet(10,10);
 };
 
 SpreadsheetFactory.prototype.row = function () {

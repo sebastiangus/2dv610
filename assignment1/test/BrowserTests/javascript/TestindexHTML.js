@@ -34,7 +34,7 @@ describe('spreadsheet-template tests', function () {
     it('adding spreadsheet object adds spreadsheet-template to dom',function () {
         var factory = new Factory();
         var spread = factory.spreadsheet();
-        spread.appendToSelector();
+        spread.appendDefaultTemplateToSelector();
         expect(document.querySelector('.spreadsheet')).to.exist;
     });
 });

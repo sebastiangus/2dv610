@@ -17,11 +17,9 @@ Spreadsheet.prototype.addRow = function () {
     this.rows.push(new Row());
 };
 
-
-Spreadsheet.prototype.appendToSelector = function(selector){
+Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
     var _selector = selector || 'body';
-    var template = DomController.getTemplateNodeById('#spreadsheet-template');
-    var node = document.importNode(template, true);
+    var node = DomController.getTemplateNodeById('#spreadsheet-template');
     var appendToElement = document.querySelector(_selector);
     appendToElement.appendChild(node);
 };

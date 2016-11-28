@@ -34,6 +34,11 @@ describe('Spreadsheet', function(){
         sut.rows.should.have.length(1);
     });
 
+    it('rows attribute should have length 10 after addRow', function () {
+        sut.addRow(10)
+        sut.rows.should.have.length(10)
+    });
+
     it('getRows array contains Row objects', function (){
         sut.addRow();
         let array = sut.getRows();

@@ -12,7 +12,9 @@ DomController.prototype.getImportedTemplates = function () {
 
 DomController.prototype.getTemplateNodeById = function (selector) {
     var templates = this.getImportedTemplates();
-    return templates.querySelector(selector).content;
+    var selectedTemplate = templates.querySelector(selector).content;
+    var node = document.importNode(selectedTemplate, true);
+    return node;
 };
 
 module.exports = new DomController();
@@ -70,11 +72,9 @@ Spreadsheet.prototype.addRow = function () {
     this.rows.push(new Row());
 };
 
-
-Spreadsheet.prototype.appendToSelector = function(selector){
+Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
     var _selector = selector || 'body';
-    var template = DomController.getTemplateNodeById('#spreadsheet-template');
-    var node = document.importNode(template, true);
+    var node = DomController.getTemplateNodeById('#spreadsheet-template');
     var appendToElement = document.querySelector(_selector);
     appendToElement.appendChild(node);
 };
@@ -91,7 +91,7 @@ function SpreadsheetFactory(){
 }
 
 SpreadsheetFactory.prototype.spreadsheet = function () {
-    return new Spreadsheet();
+    return new Spreadsheet(10,10);
 };
 
 SpreadsheetFactory.prototype.row = function () {
@@ -419,7 +419,7 @@ describe('spreadsheet-template tests', function () {
     it('adding spreadsheet object adds spreadsheet-template to dom',function () {
         var factory = new Factory();
         var spread = factory.spreadsheet();
-        spread.appendToSelector();
+        spread.appendDefaultTemplateToSelector();
         expect(document.querySelector('.spreadsheet')).to.exist;
     });
 });

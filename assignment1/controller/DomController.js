@@ -11,7 +11,9 @@ DomController.prototype.getImportedTemplates = function () {
 
 DomController.prototype.getTemplateNodeById = function (selector) {
     var templates = this.getImportedTemplates();
-    return templates.querySelector(selector).content;
+    var selectedTemplate = templates.querySelector(selector).content;
+    var node = document.importNode(selectedTemplate, true);
+    return node;
 };
 
 module.exports = new DomController();
