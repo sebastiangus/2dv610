@@ -5,10 +5,12 @@ function DomController() {
 }
 
 DomController.prototype.getImportedTemplates = function () {
-
+    var templates = document.querySelector('link[rel=import]');
+    var importedHtml = templates.import;
+    return importedHtml;
 };
 
-module.exports = DomController;
+module.exports = new DomController();
 },{}],2:[function(require,module,exports){
 'use strict';
 
@@ -47,6 +49,7 @@ module.exports = Row;
 'use strict';
 
 var Row = require('../model/Row');
+var DomController = require('../controller/DomController');
 
 function Spreadsheet() {
     this.rows = [];
@@ -65,16 +68,15 @@ Spreadsheet.prototype.addRow = function () {
 
 Spreadsheet.prototype.appendToSelector = function(selector){
     var _selector = selector || 'body';
-    var templates = document.querySelector('link[rel=import]');
-    var importedHtml = templates.import;
-    templates = importedHtml.querySelector('#spreadsheet-template').content;
+    var importedHtml = DomController.getImportedTemplates();
+    var templates = importedHtml.querySelector('#spreadsheet-template').content;
     var node = document.importNode(templates, true);
     var appendToElement = document.querySelector(_selector);
     appendToElement.appendChild(templates);
 };
 
 module.exports = Spreadsheet;
-},{"../model/Row":3}],5:[function(require,module,exports){
+},{"../controller/DomController":1,"../model/Row":3}],5:[function(require,module,exports){
 'use strict';
 
 var Spreadsheet = require('../model/Spreadsheet');
@@ -382,7 +384,7 @@ module.exports = SpreadsheetFactory;
 var expect = chai.expect;
 var should = chai.should();
 var Factory = require('../../../model/SpreadsheetFactory');
-var DomController = require('../../../controller/DomController');
+var domController = require('../../../controller/DomController');
 chai.use(require('chai-dom'));
 
 describe('cell-template tests', function () {
@@ -420,11 +422,9 @@ describe('spreadsheet-template tests', function () {
 
 
 describe('DomController tests', function () {
-    var domController = new DomController();
-
-
-    it('Get templates',function () {
-        domController.getImportedTemplates();
+    it('getImportedTemplates contains template tag',function () {
+        var templates = domController.getImportedTemplates();
+        expect(templates.querySelector('template'));
     });
-})
+});
 },{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"chai-dom":6}]},{},[7]);
