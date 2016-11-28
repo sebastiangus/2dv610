@@ -63,7 +63,6 @@ var Row = require('../model/Row');
 var DomController = require('../controller/DomController');
 
 function Spreadsheet(nRows, nCols) {
-    console.log(typeof  nRows);
     var _nRows = typeof nRows === 'number' ? nRows : 1;
     var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];
@@ -101,8 +100,8 @@ var Row = require('../model/Row');
 function SpreadsheetFactory(){
 }
 
-SpreadsheetFactory.prototype.spreadsheet = function () {
-    return new Spreadsheet(10,10);
+SpreadsheetFactory.prototype.spreadsheet = function (nRows, nCols) {
+    return new Spreadsheet(nRows,nCols);
 };
 
 SpreadsheetFactory.prototype.row = function () {

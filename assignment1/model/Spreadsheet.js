@@ -4,7 +4,6 @@ var Row = require('../model/Row');
 var DomController = require('../controller/DomController');
 
 function Spreadsheet(nRows, nCols) {
-    console.log(typeof  nRows);
     var _nRows = typeof nRows === 'number' ? nRows : 1;
     var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];

@@ -7,8 +7,8 @@ var Row = require('../model/Row');
 function SpreadsheetFactory(){
 }
 
-SpreadsheetFactory.prototype.spreadsheet = function () {
-    return new Spreadsheet(10,10);
+SpreadsheetFactory.prototype.spreadsheet = function (nRows, nCols) {
+    return new Spreadsheet(nRows,nCols);
 };
 
 SpreadsheetFactory.prototype.row = function () {
