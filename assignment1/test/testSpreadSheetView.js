@@ -3,6 +3,7 @@ var chai =require('chai');
 var SpreadSheet = require('.././model/Spreadsheet');
 var SpreadSheetView = require('.././view/SpreadSheetView');
 var Row = require('../model/Row');
+var sinon = require('sinon');
 
 var expect = chai.expect;
 var assert = chai.assert;
@@ -33,5 +34,11 @@ describe('view Tests',function () {
     it('SpreadSheetView should have property addListenersToSubject', function () {
         var view = new SpreadSheetView(spread);
         view.should.have.property('addListenersToSubject');
+    });
+
+    it('SpreadSheetView should add listener to SpreadSheet at instantiation', function () {
+        spread.addListener = sinon.spy();
+        var view = new SpreadSheetView(spread);
+        assert(spread.addListener.calledOnce);
     });
 });

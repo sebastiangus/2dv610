@@ -56,21 +56,14 @@ describe('Spreadsheet', function(){
         sut.listeners.should.have.length(1);
     });
 
-    it('notifyListeners should be calledOnce when addRow is called', function () {
-        sut.should.have.property('notifyListeners');
-        sut.notifyListeners = sinon.spy();
-        sut.addRow();
-        assert(sut.notifyListeners.calledOnce);
-    });
-
-    it('listen function added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
+    it('should invoke 1 registered listener', function () {
         var testListener = sinon.spy();
         sut.addListener(testListener);
         sut.notifyListeners();
         assert(testListener.calledOnce);
     });
 
-    it('all listener functions added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
+    it('should invoke 5 registered listeners', function () {
         var testListener = sinon.spy();
         sut.addListener(testListener); //1
         sut.addListener(testListener); //2
@@ -79,5 +72,12 @@ describe('Spreadsheet', function(){
         sut.addListener(testListener); //5
         sut.notifyListeners();
         assert(testListener.callCount == 5)
+    });
+
+    it('should invoke notifyListeners once when addRow executes', function () {
+        sut.should.have.property('notifyListeners');
+        sut.notifyListeners = sinon.spy();
+        sut.addRow();
+        assert(sut.notifyListeners.calledOnce);
     });
 });
