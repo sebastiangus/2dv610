@@ -30,8 +30,8 @@ Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
     appendToElement.appendChild(node);
 };
 
-Spreadsheet.prototype.addListener = function () {
-
+Spreadsheet.prototype.addListener = function (listener) {
+    this.listeners.push(listener);
 };
 
 module.exports = Spreadsheet;
