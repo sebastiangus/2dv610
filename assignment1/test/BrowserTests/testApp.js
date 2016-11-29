@@ -93,6 +93,10 @@ Spreadsheet.prototype.addListener = function (listener) {
     this.listeners.push(listener);
 };
 
+Spreadsheet.prototype.notifyListeners = function () {
+
+};
+
 module.exports = Spreadsheet;
 },{"../controller/DomController":1,"../model/Row":3}],5:[function(require,module,exports){
 'use strict';

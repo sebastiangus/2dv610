@@ -58,7 +58,7 @@ describe('Spreadsheet', function(){
 
     it('notifyListeners should be called when addRow is called', function () {
         sut.should.have.property('notifyListeners');
-        
+
 
     });
 });

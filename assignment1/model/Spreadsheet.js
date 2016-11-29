@@ -34,4 +34,8 @@ Spreadsheet.prototype.addListener = function (listener) {
     this.listeners.push(listener);
 };
 
+Spreadsheet.prototype.notifyListeners = function () {
+
+};
+
 module.exports = Spreadsheet;
