@@ -8,6 +8,7 @@ function Spreadsheet(nRows, nCols) {
     var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];
     this.addRow(_nRows, _nCols);
+    this.listeners = [];
 }
 
 
