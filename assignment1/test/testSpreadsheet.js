@@ -56,10 +56,17 @@ describe('Spreadsheet', function(){
         sut.listeners.should.have.length(1);
     });
 
-    it('notifyListeners should be called when addRow is called', function () {
+    it('notifyListeners should be calledOnce when addRow is called', function () {
         sut.should.have.property('notifyListeners');
         sut.notifyListeners = sinon.spy();
         sut.addRow();
         assert(sut.notifyListeners.calledOnce);
     });
+
+    it('listener added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
+        var listener = sinon.spy();
+        sut.addListener(listener);
+        sut.addRow();
+        assert(listener.calledOnce);
+    })
 });

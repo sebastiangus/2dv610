@@ -30,7 +30,7 @@ describe('view Tests',function () {
         }).to.not.throw(Error);
     });
 
-    it('SpreadSheetView should have addListenersToSubject', function () {
+    it('SpreadSheetView should have property addListenersToSubject', function () {
         var view = new SpreadSheetView(spread);
         view.should.have.property('addListenersToSubject');
     });

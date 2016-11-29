@@ -21,6 +21,9 @@ Spreadsheet.prototype.addRow = function (nRows, nCols) {
     for(let i = 0; i < nRows; i += 1) {
         this.rows.push(new Row(nCols));
     }
+
+    this.notifyListeners();
+
 };
 
 Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
