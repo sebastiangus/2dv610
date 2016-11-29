@@ -63,10 +63,21 @@ describe('Spreadsheet', function(){
         assert(sut.notifyListeners.calledOnce);
     });
 
-    it('listener functions added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
+    it('listen function added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
         var testListener = sinon.spy();
         sut.addListener(testListener);
-        sut.addRow();
+        sut.notifyListeners();
         assert(testListener.calledOnce);
-    })
+    });
+
+    it('all listener functions added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
+        var testListener = sinon.spy();
+        sut.addListener(testListener); //1
+        sut.addListener(testListener); //2
+        sut.addListener(testListener); //3
+        sut.addListener(testListener); //4
+        sut.addListener(testListener); //5
+        sut.notifyListeners();
+        assert(testListener.callCount == 5)
+    });
 });
