@@ -18,7 +18,7 @@ describe('view Tests',function () {
        assert.Throw(SpreadSheetView, Error);
    });
 
-    it('view should throw error if initiated with Row',function () {
+    it('view should throw error if initiated with object not constructed from SpreadSheet constructor',function () {
       expect(function () {
           var view = new SpreadSheetView(row);
       }).to.throw(Error);
@@ -28,5 +28,10 @@ describe('view Tests',function () {
         expect(function () {
             var view = new SpreadSheetView(spread);
         }).to.not.throw(Error);
+    });
+
+    it('SpreadSheetView should have addObserversToSubject', function () {
+        var view = new SpreadSheetView(spread);
+        view.should.have.property('addObserversToSubject');
     });
 });
