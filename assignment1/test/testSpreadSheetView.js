@@ -46,5 +46,12 @@ describe('SpreadSheetView Tests',function () {
         assert(spread.addListener.called);
     });
 
+    it('should invoke view-update ',function () {
+        var view = new SpreadSheetView(spread);
+        view.update = sinon.spy();
+        spread.addRow();
+        assert(view.update.calledOnce);
+    });
+
 
 });
