@@ -34,8 +34,4 @@ describe('view Tests',function () {
         var view = new SpreadSheetView(spread);
         view.should.have.property('addListenersToSubject');
     });
-
-    it('')
-
-
 });

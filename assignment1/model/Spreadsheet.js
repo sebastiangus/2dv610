@@ -7,8 +7,8 @@ function Spreadsheet(nRows, nCols) {
     var _nRows = typeof nRows === 'number' ? nRows : 1;
     var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];
-    this.addRow(_nRows, _nCols);
     this.listeners = [];
+    this.addRow(_nRows, _nCols);
 }
 
 
@@ -23,7 +23,6 @@ Spreadsheet.prototype.addRow = function (nRows, nCols) {
     }
 
     this.notifyListeners();
-
 };
 
 Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
@@ -38,7 +37,9 @@ Spreadsheet.prototype.addListener = function (listener) {
 };
 
 Spreadsheet.prototype.notifyListeners = function () {
-
+    if(this.listeners.length > 0) {
+        this.listeners[0]();
+    }
 };
 
 module.exports = Spreadsheet;

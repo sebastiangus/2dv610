@@ -63,10 +63,10 @@ describe('Spreadsheet', function(){
         assert(sut.notifyListeners.calledOnce);
     });
 
-    it('listener added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
-        var listener = sinon.spy();
-        sut.addListener(listener);
+    it('listener functions added to SpreadSheet should be invoked when notifyListeners is invoked', function () {
+        var testListener = sinon.spy();
+        sut.addListener(testListener);
         sut.addRow();
-        assert(listener.calledOnce);
+        assert(testListener.calledOnce);
     })
 });
