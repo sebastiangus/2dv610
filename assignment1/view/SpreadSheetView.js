@@ -6,5 +6,8 @@ function SpreadSheetView(spreadsheet) {
     }
 }
 
+SpreadSheetView.prototype.addListenersToSubject = function () {
+
+};
 
 module.exports = SpreadSheetView;

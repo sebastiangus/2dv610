@@ -14,24 +14,28 @@ var row = new Row();
 //http://stackoverflow.com/questions/14966821/testing-for-errors-thrown-in-mocha
 
 describe('view Tests',function () {
-    it('view should throw error if not initiated with SpreadSheet', function () {
+    it('SpreadSheetView should throw error if not initiated with SpreadSheet', function () {
        assert.Throw(SpreadSheetView, Error);
    });
 
-    it('view should throw error if initiated with object not constructed from SpreadSheet constructor',function () {
+    it('SpreadSheetView should throw error if initiated with object not constructed from SpreadSheet constructor',function () {
       expect(function () {
           var view = new SpreadSheetView(row);
       }).to.throw(Error);
     });
 
-    it('view should not throw error if initiated with SpreadSheet', function () {
+    it('SpreadSheetView should not throw error if initiated with SpreadSheet', function () {
         expect(function () {
             var view = new SpreadSheetView(spread);
         }).to.not.throw(Error);
     });
 
-    it('SpreadSheetView should have addObserversToSubject', function () {
+    it('SpreadSheetView should have addListenersToSubject', function () {
         var view = new SpreadSheetView(spread);
-        view.should.have.property('addObserversToSubject');
+        view.should.have.property('addListenersToSubject');
     });
+
+    it('')
+
+
 });

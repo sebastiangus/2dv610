@@ -43,4 +43,8 @@ describe('Spreadsheet', function(){
         let array = sut.getRows();
         array[0].should.be.instanceOf(Row);
     });
+
+    it('addListener should exist', function () {
+        expect(sut).to.have.property('addListener');
+    });
 });
