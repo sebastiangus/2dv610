@@ -88,6 +88,10 @@ Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
     appendToElement.appendChild(node);
 };
 
+Spreadsheet.prototype.addListener = function () {
+    
+};
+
 module.exports = Spreadsheet;
 },{"../controller/DomController":1,"../model/Row":3}],5:[function(require,module,exports){
 'use strict';

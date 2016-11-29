@@ -29,4 +29,8 @@ Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
     appendToElement.appendChild(node);
 };
 
+Spreadsheet.prototype.addListener = function () {
+    
+};
+
 module.exports = Spreadsheet;
