@@ -38,7 +38,9 @@ Spreadsheet.prototype.addListener = function (listener) {
 
 Spreadsheet.prototype.notifyListeners = function () {
     if(this.listeners.length > 0) {
-        this.listeners[0]();
+        this.listeners.forEach(function (element) {
+            element();
+        });
     }
 };
 
