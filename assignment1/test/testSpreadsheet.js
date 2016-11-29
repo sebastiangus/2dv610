@@ -44,7 +44,11 @@ describe('Spreadsheet', function(){
         array[0].should.be.instanceOf(Row);
     });
 
-    it('addListener should exist', function () {
+    it('addListener property should exist', function () {
         expect(sut).to.have.property('addListener');
+    });
+
+    it('addListerner should push listener to listeners array', function () {
+        expect(sut).to.have.property('listeners');
     });
 });

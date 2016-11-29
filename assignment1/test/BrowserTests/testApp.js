@@ -89,7 +89,7 @@ Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
 };
 
 Spreadsheet.prototype.addListener = function () {
-    
+
 };
 
 module.exports = Spreadsheet;
