@@ -9,8 +9,11 @@ var expect = chai.expect;
 var assert = chai.assert;
 var should = chai.should();
 
+//How to check for thrown errors
+//http://stackoverflow.com/questions/14966821/testing-for-errors-thrown-in-mocha
+
 describe('view Tests',function () {
     it('view should throw error if not initiated with SpreadSheet', function () {
-       should.Throw(new SpreadSheetView());
+       assert.Throw(SpreadSheetView, Error, "SpreadSheetView can only be instantiated by passing reference to SpreadSheet");
    });
 });
