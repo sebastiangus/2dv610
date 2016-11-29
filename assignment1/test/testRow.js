@@ -16,20 +16,20 @@ describe('Row tests', function(){
         sut = new Row();
     });
 
-    it('row has propety cells', function () {
+    it('should have property cells', function () {
         sut.should.have.property('cells');
     });
 
-    it('addCell should add element to cells', function () {
+    it('should have cells array of length 1 after instantiation', function () {
         expect(sut.cells).length(1);
     });
 
-    it('addCell should add element of type Cell to cells array', function () {
+    it('should add element of type Cell to cells array', function () {
        sut.addCell();
         expect(sut.cells[0]).to.be.instanceOf(Cell);
     });
 
-    it('cells array should be 5 in length', function () {
+    it('should have cells array of length 5', function () {
         sut.addCell(4);
         expect(sut.cells).length(5);
     })

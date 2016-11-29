@@ -8,22 +8,22 @@ var expect = chai.expect;
 var assert = chai.assert;
 var should = chai.should();
 
-describe('Row tests', function(){
+describe('Celltests', function(){
     var sut = new Cell();
 
     afterEach(function () {
         sut = new Cell();
     });
 
-    it('cell has propety value', function () {
+    it('should have property value', function () {
         sut.should.have.property('value');
     });
 
-    it('cell setValue sets value',function () {
+    it('should set value to 5',function () {
         sut.setValue(5);
     });
 
-    it('cell getValue returns value 5', function () {
+    it('should get value 5', function () {
         sut.setValue(5);
         expect(sut.getValue()).to.equal(5);
     })

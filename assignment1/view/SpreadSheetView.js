@@ -11,7 +11,16 @@ function SpreadSheetView(spreadsheet) {
 }
 
 SpreadSheetView.prototype.addListenersToSubject = function () {
-    this.spreadSheet.addListener();
+    var test = function () {
+        console.log("test");
+    };
+    var test2 = function () {
+        console.log("test 2");
+    };
+
+    this.spreadSheet.addListener(test);
+    this.spreadSheet.addListener(test2);
+
 };
 
 module.exports = SpreadSheetView;

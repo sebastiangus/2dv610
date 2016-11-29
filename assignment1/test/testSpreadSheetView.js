@@ -14,31 +14,31 @@ var row = new Row();
 //How to check for thrown errors
 //http://stackoverflow.com/questions/14966821/testing-for-errors-thrown-in-mocha
 
-describe('view Tests',function () {
+describe('SpreadSheetView Tests',function () {
     it('SpreadSheetView should throw error if not initiated with SpreadSheet', function () {
        assert.Throw(SpreadSheetView, Error);
    });
 
-    it('SpreadSheetView should throw error if initiated with object not constructed from SpreadSheet constructor',function () {
+    it('should throw error if initiated with object not constructed from SpreadSheet constructor',function () {
       expect(function () {
           var view = new SpreadSheetView(row);
       }).to.throw(Error);
     });
 
-    it('SpreadSheetView should not throw error if initiated with SpreadSheet', function () {
+    it('should not throw error if initiated with SpreadSheet', function () {
         expect(function () {
             var view = new SpreadSheetView(spread);
         }).to.not.throw(Error);
     });
 
-    it('SpreadSheetView should have property addListenersToSubject', function () {
+    it('should have property addListenersToSubject', function () {
         var view = new SpreadSheetView(spread);
         view.should.have.property('addListenersToSubject');
     });
 
-    it('SpreadSheetView should add listener to SpreadSheet at instantiation', function () {
+    it('should add listener to SpreadSheet at instantiation', function () {
         spread.addListener = sinon.spy();
         var view = new SpreadSheetView(spread);
-        assert(spread.addListener.calledOnce);
+        assert(spread.addListener.called);
     });
 });
