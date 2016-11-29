@@ -15,6 +15,10 @@ var row = new Row();
 //http://stackoverflow.com/questions/14966821/testing-for-errors-thrown-in-mocha
 
 describe('SpreadSheetView Tests',function () {
+    beforeEach(function () {
+        spread = new SpreadSheet();
+    });
+
     it('SpreadSheetView should throw error if not initiated with SpreadSheet', function () {
        assert.Throw(SpreadSheetView, Error);
    });
@@ -41,4 +45,6 @@ describe('SpreadSheetView Tests',function () {
         var view = new SpreadSheetView(spread);
         assert(spread.addListener.called);
     });
+
+
 });

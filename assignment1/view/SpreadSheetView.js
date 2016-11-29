@@ -1,26 +1,16 @@
-var Spreadsheet = require('../model/Spreadsheet');
+var SpreadSheet = require('../model/Spreadsheet');
 
-function SpreadSheetView(spreadsheet) {
-    if(spreadsheet.constructor !== Spreadsheet) {
+function SpreadSheetView(spreadSheet) {
+    if(spreadSheet.constructor !== SpreadSheet) {
         throw new Error("SpreadSheetView can only be instantiated by passing reference to SpreadSheet");
     }
 
-    this.spreadSheet = spreadsheet;
-
+    this.spreadSheet = spreadSheet;
     this.addListenersToSubject();
 }
 
 SpreadSheetView.prototype.addListenersToSubject = function () {
-    var test = function () {
-        console.log("test");
-    };
-    var test2 = function () {
-        console.log("test 2");
-    };
-
-    this.spreadSheet.addListener(test);
-    this.spreadSheet.addListener(test2);
-
+    this.spreadSheet.addListener();
 };
 
 module.exports = SpreadSheetView;
