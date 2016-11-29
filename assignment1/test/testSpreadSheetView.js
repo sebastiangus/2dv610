@@ -14,6 +14,10 @@ var should = chai.should();
 
 describe('view Tests',function () {
     it('view should throw error if not initiated with SpreadSheet', function () {
-       assert.Throw(SpreadSheetView, Error, "SpreadSheetView can only be instantiated by passing reference to SpreadSheet");
+       assert.Throw(SpreadSheetView, Error);
    });
+
+    it('view should not throw error if initiated with SpreadSheet', function () {
+       expect(SpreadSheetView).to.not.throw(Error);
+    })
 });

@@ -66,7 +66,6 @@ function Spreadsheet(nRows, nCols) {
     var _nRows = typeof nRows === 'number' ? nRows : 1;
     var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];
-
     this.addRow(_nRows, _nCols);
 }
 
