@@ -48,11 +48,17 @@ describe('Spreadsheet', function(){
         expect(sut).to.have.property('addListener');
     });
 
-    it('addListerner should push listener to listeners array', function () {
+    it('addListener should push listener to listeners array', function () {
         var listener = sinon.spy();
         sut.addListener(listener);
 
         expect(sut).to.have.property('listeners');
         sut.listeners.should.have.length(1);
+    });
+
+    it('notifyListeners should be called when addRow is called', function () {
+        sut.should.have.property('notifyListeners');
+        
+
     });
 });
