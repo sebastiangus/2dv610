@@ -16,11 +16,11 @@ describe('DomController',function () {
        expect(domController.getTemplateIdForObject(factory.spreadsheet())).to.equal('spreadsheet-template');
    });
 
-    it('should return row-template string for object constructed by SpreadSheet constructor',function () {
+    it('should return row-template string for object constructed by Row constructor',function () {
         expect(domController.getTemplateIdForObject(factory.row())).to.equal('row-template');
     });
 
-    it('should return row-template string for object constructed by SpreadSheet constructor',function () {
-        expect(domController.getTemplateIdForObject(ce)).to.equal('cell-template');
+    it('should return cell-template string for object constructed by Cell constructor',function () {
+        expect(domController.getTemplateIdForObject(factory.cell())).to.equal('cell-template');
     });
 });

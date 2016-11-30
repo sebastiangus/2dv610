@@ -56,6 +56,10 @@ Cell.prototype.getValue = function () {
     return this.value;
 };
 
+Cell.prototype.getTemplateId = function () {
+
+};
+
 module.exports = Cell;
 },{}],3:[function(require,module,exports){
 'use strict';
