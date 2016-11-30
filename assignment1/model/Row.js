@@ -17,4 +17,7 @@ Row.prototype.addCell = function (nCells) {
     }
 };
 
+Row.prototype.getTemplateId = function () {
+    return 'row-template';
+};
 module.exports = Row;

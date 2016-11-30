@@ -78,6 +78,9 @@ Row.prototype.addCell = function (nCells) {
     }
 };
 
+Row.prototype.getTemplateId = function () {
+    return 'row-template';
+};
 module.exports = Row;
 
 },{"../model/Cell":2}],4:[function(require,module,exports){
