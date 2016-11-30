@@ -26,6 +26,10 @@ DomController.prototype.appendDefaultTemplateToSelector = function(selector){
 
 
 
+DomController.prototype.getTemplateIdForObject = function (obj) {
+
+};
+
 module.exports = new DomController();
 },{}],2:[function(require,module,exports){
 'use strict';
