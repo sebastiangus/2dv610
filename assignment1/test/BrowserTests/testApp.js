@@ -1,7 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
-var SpreadSheetFactory = require('.././model/SpreadsheetFactory');
-var factory = new SpreadSheetFactory();
+var factory = require('.././model/SpreadsheetFactory');
 var spread = factory.spreadsheet();
 var row = factory.row();
 
@@ -81,6 +80,8 @@ Row.prototype.addCell = function (nCells) {
 Row.prototype.getTemplateId = function () {
     return 'row-template';
 };
+
+
 module.exports = Row;
 
 },{"../model/Cell":2}],4:[function(require,module,exports){
@@ -149,7 +150,7 @@ SpreadSheetFactory.prototype.cell = function () {
     return new Cell();
 };
 
-module.exports = SpreadSheetFactory;
+module.exports = new SpreadSheetFactory();
 
 },{"../model/Cell":2,"../model/Row":3,"../model/SpreadSheet":4}],6:[function(require,module,exports){
 (function(chaiDom) {

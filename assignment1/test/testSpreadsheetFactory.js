@@ -1,6 +1,6 @@
 'use strict';
 var chai = require('chai');
-var SpreadsheetFactory = require('../model/SpreadsheetFactory'); // Require the System to test
+var factory = require('../model/SpreadsheetFactory'); // Require the System to test
 var Spreadsheet = require('../model/SpreadSheet'); // Require the System to test
 var Cell = require('../model/Cell');
 var Row = require('../model/Row');
@@ -10,7 +10,6 @@ var assert = chai.assert;
 var should = chai.should();
 
 describe('SpreadsheetFactory', function(){
-    var factory = new SpreadsheetFactory();
     var sut;
 
     it('should return a new Spreadsheet', function () {

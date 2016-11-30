@@ -1,6 +1,5 @@
 'use strict';
-var SpreadSheetFactory = require('.././model/SpreadsheetFactory');
-var factory = new SpreadSheetFactory();
+var factory = require('.././model/SpreadsheetFactory');
 var spread = factory.spreadsheet();
 var row = factory.row();
 

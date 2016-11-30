@@ -19,4 +19,4 @@ SpreadSheetFactory.prototype.cell = function () {
     return new Cell();
 };
 
-module.exports = SpreadSheetFactory;
+module.exports = new SpreadSheetFactory();
