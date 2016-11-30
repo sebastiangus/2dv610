@@ -23,4 +23,6 @@ DomController.prototype.appendDefaultTemplateToSelector = function(selector){
     appendToElement.appendChild(node);
 };
 
+
+
 module.exports = new DomController();

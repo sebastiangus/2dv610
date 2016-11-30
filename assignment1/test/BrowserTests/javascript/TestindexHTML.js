@@ -37,6 +37,7 @@ describe('spreadsheet-template', function () {
         var spread = factory.spreadsheet();
         domController.appendDefaultTemplateToSelector();
         expect(document.querySelector('.spreadsheet')).to.exist;
+        document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
     });
 });
 
@@ -55,8 +56,8 @@ describe('DomController', function () {
 
 
 describe('SpreadSheetView', function () {
-    it('should create SpreadSheet in documentfragment containing 10 elements of row class', function () {
-        var spread = new Factory().spreadsheet()
+    it('should create SpreadSheet in dom containing 10 elements of row class', function () {
+        var spread = new Factory().spreadsheet();
         var view = new View(spread);
         view.update();
         expect(document.querySelector(".spreadsheet")).to.length(10);
