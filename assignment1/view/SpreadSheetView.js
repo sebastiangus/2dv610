@@ -18,6 +18,12 @@ SpreadSheetView.prototype.update = function () {
     this.spreadSheet.appendDefaultTemplateToSelector();
 };
 
+SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
+    var fragment = document.createDocumentFragment();
+    this.spreadSheet.rows.forEach(function (row) {
+    });
+};
+
 
 
 module.exports = SpreadSheetView;

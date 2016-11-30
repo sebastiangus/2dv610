@@ -25,13 +25,6 @@ Spreadsheet.prototype.addRow = function (nRows, nCols) {
     this.notifyListeners();
 };
 
-Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
-    var _selector = selector || 'body';
-    var node = DomController.getTemplateNodeById('#spreadsheet-template');
-    var appendToElement = document.querySelector(_selector);
-    appendToElement.appendChild(node);
-};
-
 Spreadsheet.prototype.addListener = function (listener) {
     this.listeners.push(listener);
 };

@@ -17,6 +17,13 @@ DomController.prototype.getTemplateNodeById = function (selector) {
     return node;
 };
 
+DomController.prototype.appendDefaultTemplateToSelector = function(selector){
+    var _selector = selector || 'body';
+    var node = this.getTemplateNodeById('#spreadsheet-template');
+    var appendToElement = document.querySelector(_selector);
+    appendToElement.appendChild(node);
+};
+
 module.exports = new DomController();
 },{}],2:[function(require,module,exports){
 'use strict';
@@ -82,13 +89,6 @@ Spreadsheet.prototype.addRow = function (nRows, nCols) {
     }
 
     this.notifyListeners();
-};
-
-Spreadsheet.prototype.appendDefaultTemplateToSelector = function(selector){
-    var _selector = selector || 'body';
-    var node = DomController.getTemplateNodeById('#spreadsheet-template');
-    var appendToElement = document.querySelector(_selector);
-    appendToElement.appendChild(node);
 };
 
 Spreadsheet.prototype.addListener = function (listener) {
@@ -444,7 +444,7 @@ describe('spreadsheet-template', function () {
     it('adding spreadsheet object adds spreadsheet-template to dom',function () {
         var factory = new Factory();
         var spread = factory.spreadsheet();
-        spread.appendDefaultTemplateToSelector();
+        domController.appendDefaultTemplateToSelector();
         expect(document.querySelector('.spreadsheet')).to.exist;
     });
 });
@@ -492,6 +492,12 @@ SpreadSheetView.prototype.addListenersToSubject = function () {
 
 SpreadSheetView.prototype.update = function () {
     this.spreadSheet.appendDefaultTemplateToSelector();
+};
+
+SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
+    var fragment = document.createDocumentFragment();
+    this.spreadSheet.rows.forEach(function (row) {
+    });
 };
 
 
