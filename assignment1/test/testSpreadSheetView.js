@@ -46,10 +46,11 @@ describe('SpreadSheetView Tests',function () {
         assert(spread.addListener.called);
     });
 
+    //http://stackoverflow.com/questions/27484502/stubbing-a-prototype-method-with-sinon, a spy do not register the call, method needs stubbing
     it('should invoke view-update ',function () {
+        sinon.stub(SpreadSheetView.prototype, 'update');
         var view = new SpreadSheetView(spread);
-        view.update = sinon.spy();
-        spread.addRow();
+        spread.notifyListeners();
         assert(view.update.calledOnce);
     });
 

@@ -10,9 +10,11 @@ function SpreadSheetView(spreadSheet) {
 }
 
 SpreadSheetView.prototype.addListenersToSubject = function () {
-    this.spreadSheet.addListener();
+    this.spreadSheet.addListener(this.update);
 };
 
-
+SpreadSheetView.prototype.update = function () {
+    console.log('UPDATING VIEW');
+};
 
 module.exports = SpreadSheetView;
