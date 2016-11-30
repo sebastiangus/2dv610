@@ -29,8 +29,6 @@ DomController.prototype.appendDefaultTemplateToSelector = function(selector){
 
 DomController.prototype.getTemplateIdForObject = function (input) {
     var id;
-    console.log(input.constructor);
-    console.log(spread.constructor);
     switch(input.prototype) {
         case spread.prototype:
             id = 'spreadsheet-template';
