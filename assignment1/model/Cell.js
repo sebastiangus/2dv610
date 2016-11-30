@@ -13,7 +13,7 @@ Cell.prototype.getValue = function () {
 };
 
 Cell.prototype.getTemplateId = function () {
-
+    return 'cell-template'
 };
 
 module.exports = Cell;
