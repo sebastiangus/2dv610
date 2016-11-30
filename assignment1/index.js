@@ -5,4 +5,4 @@ var View = require('./view/SpreadSheetView');
 
 var spread = spreadFactory.spreadsheet(10,10);
 var view = new View(spread);
-
+view.update();

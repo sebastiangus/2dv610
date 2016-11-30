@@ -411,11 +411,12 @@ module.exports = SpreadsheetFactory;
 
 var expect = chai.expect;
 var should = chai.should();
+chai.use(require('chai-dom'));
 var Factory = require('../../../model/SpreadsheetFactory');
 var domController = require('../../../controller/DomController');
-chai.use(require('chai-dom'));
+var View = require('../../../view/SpreadSheetView');
 
-describe('cell-template tests', function () {
+describe('cell-template', function () {
 
     it('html test', function () {
         //use import to get html-document
@@ -425,7 +426,7 @@ describe('cell-template tests', function () {
     });
 });
 
-describe('row-template tests', function () {
+describe('row-template', function () {
     it('html test', function () {
         var importedHtml = document.querySelector('link[rel=import]');
         var content = importedHtml.import;
@@ -433,7 +434,7 @@ describe('row-template tests', function () {
     });
 });
 
-describe('spreadsheet-template tests', function () {
+describe('spreadsheet-template', function () {
     it('html test', function () {
         var importedHtml = document.querySelector('link[rel=import]');
         var content = importedHtml.import;
@@ -449,7 +450,7 @@ describe('spreadsheet-template tests', function () {
 });
 
 
-describe('DomController tests', function () {
+describe('DomController', function () {
     it('getImportedTemplates should contain template tag',function () {
         var templates = domController.getImportedTemplates();
         expect(templates.querySelector('template'));
@@ -460,4 +461,40 @@ describe('DomController tests', function () {
         template.should.be.instanceOf(Node)
     });
 });
-},{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"chai-dom":6}]},{},[7]);
+
+
+describe('SpreadSheetView', function () {
+    it('should create SpreadSheet in documentfragment containing 10 elements of row class', function () {
+        var spread = new Factory().spreadsheet()
+        var view = new View(spread);
+        view.update();
+        expect(document.querySelector(".spreadsheet")).to.length(10);
+    });
+
+});
+
+},{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"../../../view/SpreadSheetView":8,"chai-dom":6}],8:[function(require,module,exports){
+var SpreadSheet = require('../model/Spreadsheet');
+var domController = require('../controller/DomController');
+
+
+function SpreadSheetView(spreadSheet) {
+    if(spreadSheet.constructor !== SpreadSheet) {
+        throw new Error("SpreadSheetView can only be instantiated by passing reference to SpreadSheet");
+    }
+    this.spreadSheet = spreadSheet;
+    this.addListenersToSubject();
+}
+
+SpreadSheetView.prototype.addListenersToSubject = function () {
+    this.spreadSheet.addListener(this.update.bind(this));
+};
+
+SpreadSheetView.prototype.update = function () {
+    this.spreadSheet.appendDefaultTemplateToSelector();
+};
+
+
+
+module.exports = SpreadSheetView;
+},{"../controller/DomController":1,"../model/Spreadsheet":4}]},{},[7]);

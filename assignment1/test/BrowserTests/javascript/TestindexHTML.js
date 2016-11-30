@@ -2,11 +2,12 @@
 
 var expect = chai.expect;
 var should = chai.should();
+chai.use(require('chai-dom'));
 var Factory = require('../../../model/SpreadsheetFactory');
 var domController = require('../../../controller/DomController');
-chai.use(require('chai-dom'));
+var View = require('../../../view/SpreadSheetView');
 
-describe('cell-template tests', function () {
+describe('cell-template', function () {
 
     it('html test', function () {
         //use import to get html-document
@@ -16,7 +17,7 @@ describe('cell-template tests', function () {
     });
 });
 
-describe('row-template tests', function () {
+describe('row-template', function () {
     it('html test', function () {
         var importedHtml = document.querySelector('link[rel=import]');
         var content = importedHtml.import;
@@ -24,7 +25,7 @@ describe('row-template tests', function () {
     });
 });
 
-describe('spreadsheet-template tests', function () {
+describe('spreadsheet-template', function () {
     it('html test', function () {
         var importedHtml = document.querySelector('link[rel=import]');
         var content = importedHtml.import;
@@ -40,7 +41,7 @@ describe('spreadsheet-template tests', function () {
 });
 
 
-describe('DomController tests', function () {
+describe('DomController', function () {
     it('getImportedTemplates should contain template tag',function () {
         var templates = domController.getImportedTemplates();
         expect(templates.querySelector('template'));
@@ -50,4 +51,15 @@ describe('DomController tests', function () {
         var template = domController.getTemplateNodeById('#spreadsheet-template');
         template.should.be.instanceOf(Node)
     });
+});
+
+
+describe('SpreadSheetView', function () {
+    it('should create SpreadSheet in documentfragment containing 10 elements of row class', function () {
+        var spread = new Factory().spreadsheet()
+        var view = new View(spread);
+        view.update();
+        expect(document.querySelector(".spreadsheet")).to.length(10);
+    });
+
 });
