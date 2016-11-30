@@ -2,7 +2,7 @@
 var chai = require('chai');
 var sinon = require('sinon');
 var SpreadsheetFactory = require('../model/SpreadsheetFactory'); // Require the System to test
-var Spreadsheet = require('../model/Spreadsheet'); // Require the System to test
+var Spreadsheet = require('../model/SpreadSheet'); // Require the System to test
 var Cell = require('../model/Cell');
 var Row = require('../model/Row');
 

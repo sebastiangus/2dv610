@@ -1,6 +1,6 @@
 'use strict';
 var chai =require('chai');
-var SpreadSheet = require('.././model/Spreadsheet');
+var SpreadSheet = require('../model/SpreadSheet');
 var SpreadSheetView = require('.././view/SpreadSheetView');
 var Row = require('../model/Row');
 var sinon = require('sinon');
@@ -13,7 +13,7 @@ var spread = new SpreadSheet();
 var row = new Row();
 
 describe('DomController',function () {
-   it('should return correct template for constructor',function () {
+   it('should return spreadsheet-template string for object constructed by SpreadSheet constructor',function () {
        expect(domController.getTemplateIdForObject(spread)).to.equal('spreadsheet-template');
    })
 });

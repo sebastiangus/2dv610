@@ -1,5 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
+var SpreadSheetFactory = require('.././model/SpreadsheetFactory');
+var factory = new SpreadSheetFactory();
+var spread = factory.spreadsheet();
 
 function DomController() {
 }
@@ -25,13 +28,24 @@ DomController.prototype.appendDefaultTemplateToSelector = function(selector){
 };
 
 
+DomController.prototype.getTemplateIdForObject = function (input) {
+    var id;
+    console.log(input.constructor);
+    console.log(spread.constructor);
+    switch(input.prototype) {
+        case spread.prototype:
+            id = 'spreadsheet-template';
+            break;
+        default:
+            throw new Error('No template for object prototype');
+            break;
+    }
 
-DomController.prototype.getTemplateIdForObject = function (obj) {
-
+    return id;
 };
 
 module.exports = new DomController();
-},{}],2:[function(require,module,exports){
+},{".././model/SpreadsheetFactory":5}],2:[function(require,module,exports){
 'use strict';
 
 function Cell() {
@@ -73,9 +87,8 @@ module.exports = Row;
 'use strict';
 
 var Row = require('../model/Row');
-var DomController = require('../controller/DomController');
 
-function Spreadsheet(nRows, nCols) {
+function SpreadSheet(nRows, nCols) {
     var _nRows = typeof nRows === 'number' ? nRows : 1;
     var _nCols = typeof nCols === 'number' ? nCols : 1;
     this.rows = [];
@@ -84,12 +97,12 @@ function Spreadsheet(nRows, nCols) {
 }
 
 
-Spreadsheet.prototype.getRows = function () {
+SpreadSheet.prototype.getRows = function () {
     return this.rows;
 };
 
 
-Spreadsheet.prototype.addRow = function (nRows, nCols) {
+SpreadSheet.prototype.addRow = function (nRows, nCols) {
     for(let i = 0; i < nRows; i += 1) {
         this.rows.push(new Row(nCols));
     }
@@ -97,11 +110,11 @@ Spreadsheet.prototype.addRow = function (nRows, nCols) {
     this.notifyListeners();
 };
 
-Spreadsheet.prototype.addListener = function (listener) {
+SpreadSheet.prototype.addListener = function (listener) {
     this.listeners.push(listener);
 };
 
-Spreadsheet.prototype.notifyListeners = function () {
+SpreadSheet.prototype.notifyListeners = function () {
     if(this.listeners.length > 0) {
         this.listeners.forEach(function (element) {
             element();
@@ -109,32 +122,32 @@ Spreadsheet.prototype.notifyListeners = function () {
     }
 };
 
-module.exports = Spreadsheet;
-},{"../controller/DomController":1,"../model/Row":3}],5:[function(require,module,exports){
+module.exports = SpreadSheet;
+},{"../model/Row":3}],5:[function(require,module,exports){
 'use strict';
 
-var Spreadsheet = require('../model/Spreadsheet');
+var SpreadSheet = require('../model/SpreadSheet');
 var Cell = require('../model/Cell');
 var Row = require('../model/Row');
 
-function SpreadsheetFactory(){
+function SpreadSheetFactory(){
 }
 
-SpreadsheetFactory.prototype.spreadsheet = function (nRows, nCols) {
-    return new Spreadsheet(nRows,nCols);
+SpreadSheetFactory.prototype.spreadsheet = function (nRows, nCols) {
+    return new SpreadSheet(nRows, nCols);
 };
 
-SpreadsheetFactory.prototype.row = function () {
+SpreadSheetFactory.prototype.row = function () {
     return new Row();
 };
 
-SpreadsheetFactory.prototype.cell = function () {
+SpreadSheetFactory.prototype.cell = function () {
     return new Cell();
 };
 
-module.exports = SpreadsheetFactory;
+module.exports = SpreadSheetFactory;
 
-},{"../model/Cell":2,"../model/Row":3,"../model/Spreadsheet":4}],6:[function(require,module,exports){
+},{"../model/Cell":2,"../model/Row":3,"../model/SpreadSheet":4}],6:[function(require,module,exports){
 (function(chaiDom) {
   if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
     module.exports = chaiDom
@@ -481,7 +494,7 @@ describe('SpreadSheetView', function () {
 });
 
 },{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"../../../view/SpreadSheetView":8,"chai-dom":6}],8:[function(require,module,exports){
-var SpreadSheet = require('../model/Spreadsheet');
+var SpreadSheet = require('../model/SpreadSheet');
 var domController = require('../controller/DomController');
 
 
@@ -511,4 +524,4 @@ SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
 
 
 module.exports = SpreadSheetView;
-},{"../controller/DomController":1,"../model/Spreadsheet":4}]},{},[7]);
+},{"../controller/DomController":1,"../model/SpreadSheet":4}]},{},[7]);

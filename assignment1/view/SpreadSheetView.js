@@ -1,4 +1,4 @@
-var SpreadSheet = require('../model/Spreadsheet');
+var SpreadSheet = require('../model/SpreadSheet');
 var domController = require('../controller/DomController');
 
 

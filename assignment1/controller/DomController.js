@@ -1,4 +1,7 @@
 'use strict';
+var SpreadSheetFactory = require('.././model/SpreadsheetFactory');
+var factory = new SpreadSheetFactory();
+var spread = factory.spreadsheet();
 
 function DomController() {
 }
@@ -24,9 +27,20 @@ DomController.prototype.appendDefaultTemplateToSelector = function(selector){
 };
 
 
+DomController.prototype.getTemplateIdForObject = function (input) {
+    var id;
+    console.log(input.constructor);
+    console.log(spread.constructor);
+    switch(input.prototype) {
+        case spread.prototype:
+            id = 'spreadsheet-template';
+            break;
+        default:
+            throw new Error('No template for object prototype');
+            break;
+    }
 
-DomController.prototype.getTemplateIdForObject = function (obj) {
-
+    return id;
 };
 
 module.exports = new DomController();

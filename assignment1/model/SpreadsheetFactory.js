@@ -1,22 +1,22 @@
 'use strict';
 
-var Spreadsheet = require('../model/Spreadsheet');
+var SpreadSheet = require('../model/SpreadSheet');
 var Cell = require('../model/Cell');
 var Row = require('../model/Row');
 
-function SpreadsheetFactory(){
+function SpreadSheetFactory(){
 }
 
-SpreadsheetFactory.prototype.spreadsheet = function (nRows, nCols) {
-    return new Spreadsheet(nRows,nCols);
+SpreadSheetFactory.prototype.spreadsheet = function (nRows, nCols) {
+    return new SpreadSheet(nRows, nCols);
 };
 
-SpreadsheetFactory.prototype.row = function () {
+SpreadSheetFactory.prototype.row = function () {
     return new Row();
 };
 
-SpreadsheetFactory.prototype.cell = function () {
+SpreadSheetFactory.prototype.cell = function () {
     return new Cell();
 };
 
-module.exports = SpreadsheetFactory;
+module.exports = SpreadSheetFactory;
