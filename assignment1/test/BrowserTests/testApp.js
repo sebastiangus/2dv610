@@ -3,6 +3,8 @@
 var SpreadSheetFactory = require('.././model/SpreadsheetFactory');
 var factory = new SpreadSheetFactory();
 var spread = factory.spreadsheet();
+var row = factory.row();
+
 
 function DomController() {
 }
@@ -29,17 +31,14 @@ DomController.prototype.appendDefaultTemplateToSelector = function(selector){
 
 
 DomController.prototype.getTemplateIdForObject = function (input) {
-    var id;
-    switch(input.prototype) {
-        case spread.prototype:
-            id = 'spreadsheet-template';
-            break;
-        default:
-            throw new Error('No template for object prototype');
-            break;
+    var result;
+    if(input.getTemplateId !== undefined){
+        result = input.getTemplateId();
+    } else {
+        result = false;
     }
 
-    return id;
+    return result;
 };
 
 module.exports = new DomController();
@@ -118,6 +117,10 @@ SpreadSheet.prototype.notifyListeners = function () {
             element();
         });
     }
+};
+
+SpreadSheet.prototype.getTemplateId = function () {
+    return 'spreadsheet-template'
 };
 
 module.exports = SpreadSheet;

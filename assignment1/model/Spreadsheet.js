@@ -36,4 +36,8 @@ SpreadSheet.prototype.notifyListeners = function () {
     }
 };
 
+SpreadSheet.prototype.getTemplateId = function () {
+    return 'spreadsheet-template'
+};
+
 module.exports = SpreadSheet;
