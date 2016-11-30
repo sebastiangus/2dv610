@@ -14,6 +14,6 @@ var row = new Row();
 
 describe('DomController',function () {
    it('should return correct template for constructor',function () {
-       domController.getTemplateIdForObject();
+       expect(domController.getTemplateIdForObject(spread)).to.equal('spreadsheet-template');
    })
 });
