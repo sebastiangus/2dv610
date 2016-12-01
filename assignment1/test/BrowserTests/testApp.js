@@ -23,13 +23,9 @@ DomController.prototype.getImportedTemplates = function () {
 };
 
 DomController.prototype.getTemplateNodeById = function (selector) {
-    //validate that id string starts with hash, else add hash.
-    if(selector[0] !== "#"){
-        selector = "#" + selector;
-    }
-
+    var validatedSelector = this.getValidatedIdStringStartingWithHash(selector);
     var templates = this.getImportedTemplates();
-    var selectedTemplate = templates.querySelector(selector).content;
+    var selectedTemplate = templates.querySelector(validatedSelector).content;
     var node = document.importNode(selectedTemplate, true);
     return node;
 };
@@ -45,6 +41,14 @@ DomController.prototype.getTemplateIdForObject = function (input) {
     }
 
     return result;
+};
+
+DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
+    if(id[0] !== "#"){
+        id = "#" + id;
+    }
+
+    return id;
 };
 
 module.exports = new DomController();
