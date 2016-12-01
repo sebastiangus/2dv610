@@ -73,7 +73,7 @@ describe('SpreadSheetView', function () {
         view.update();
         requestAnimationFrame(function () {
             expect(document.querySelector('.spreadsheet')).to.have.length(1);
-            expect(document.querySelector('.row').to.have.length(10));
+            expect(document.querySelector('.row')).to.have.length(10);
         })
     })
 });
