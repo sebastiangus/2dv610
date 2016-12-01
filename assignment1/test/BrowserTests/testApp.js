@@ -515,11 +515,23 @@ describe('SpreadSheetView', function () {
         var spread = factory.spreadsheet(10);
         var view = new View(spread);
         view.update();
-        var spreadElement = document.querySelector(".spreadsheet");
         requestAnimationFrame(function () {
             expect(document.querySelector('.spreadsheet')).to.have.length(10);
+            //remove .spreadsheet element, to clean dom
+            document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
         });
+
     });
+
+    it('should create SpreadSheet in dom containing row element containing 10 elements', function () {
+        var spread = factory.spreadsheet(1,10);
+        var view = new View(spread);
+        view.update();
+        requestAnimationFrame(function () {
+            expect(document.querySelector('.spreadsheet')).to.have.length(1);
+            expect(document.querySelector('.row').to.have.length(10));
+        })
+    })
 });
 
 
