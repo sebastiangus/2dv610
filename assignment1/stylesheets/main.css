@@ -1,4 +1,18 @@
 .spreadsheet {
-    width: 20px;
     background-color: #00d6b2;
+    width: 100%;
+    height: 800px;
+}
+
+.row {
+    border-style: solid;
+    width: inherit;
+    position: relative;
+}
+
+.cell {
+    border-style: dotted;
+    width: 9%;
+    height: 30px;
+    float: left;
 }
