@@ -569,17 +569,6 @@ SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
         rowElement = this.createRow(row);
         spreadSheet.firstElementChild.appendChild(rowElement);
     }.bind(this));
-    /*
-    this.spreadSheet.rows.forEach(function (row) {
-
-        var rowElement = domController.getElementForObject(row);
-        row.cells.forEach(function (cell, b) {
-            var cellElement = domController.getElementForObject(cell);
-            rowElement.querySelector('.row').appendChild(cellElement);
-        });
-        spreadSheet.firstElementChild.appendChild(rowElement);
-    });
-    */
 
     return spreadSheet;
 };
@@ -587,16 +576,17 @@ SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
 SpreadSheetView.prototype.createRow = function (row) {
     var rowElement = domController.getElementForObject(row);
 
-    row.cells.forEach(function (cell, b) {
-        var cellElement = domController.getElementForObject(cell);
+    row.cells.forEach(function (cell) {
+        var cellElement = this.createCell(cell);
         rowElement.querySelector('.row').appendChild(cellElement);
-    });
+    }.bind(this));
 
     return rowElement
 };
 
-SpreadSheetView.prototype.createCell = function () {
-
+SpreadSheetView.prototype.createCell = function (cell) {
+    var cellElement = domController.getElementForObject(cell);
+    return cellElement;
 };
 
 
