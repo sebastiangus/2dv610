@@ -21,8 +21,8 @@ SpreadSheetView.prototype.update = function () {
 
 SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
     var fragment = document.createDocumentFragment();
+    var spreadElement = domController.get(this.spreadSheet);
     this.spreadSheet.rows.forEach(function (row) {
-
     });
 };
 

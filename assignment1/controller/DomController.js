@@ -7,6 +7,14 @@ var row = factory.row();
 function DomController() {
 }
 
+DomController.prototype.appendDefaultTemplateToSelector = function(obj, selector){
+    var _selector = selector || 'body';
+    var id = this.getTemplateIdForObject(obj);
+    var node = this.getTemplateNodeById(id);
+    var appendToElement = document.querySelector(_selector);
+    appendToElement.appendChild(node);
+};
+
 DomController.prototype.getImportedTemplates = function () {
     var templates = document.querySelector('link[rel=import]');
     var importedHtml = templates.import;
@@ -14,18 +22,17 @@ DomController.prototype.getImportedTemplates = function () {
 };
 
 DomController.prototype.getTemplateNodeById = function (selector) {
+    //validate that id string starts with hash, else add hash.
+    if(selector[0] !== "#"){
+        selector = "#" + selector;
+    }
+
     var templates = this.getImportedTemplates();
     var selectedTemplate = templates.querySelector(selector).content;
     var node = document.importNode(selectedTemplate, true);
     return node;
 };
 
-DomController.prototype.appendDefaultTemplateToSelector = function(selector){
-    var _selector = selector || 'body';
-    var node = this.getTemplateNodeById('#spreadsheet-template');
-    var appendToElement = document.querySelector(_selector);
-    appendToElement.appendChild(node);
-};
 
 
 DomController.prototype.getTemplateIdForObject = function (input) {

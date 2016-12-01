@@ -3,7 +3,7 @@
 var expect = chai.expect;
 var should = chai.should();
 chai.use(require('chai-dom'));
-var Factory = require('../../../model/SpreadsheetFactory');
+var factory = require('../../../model/SpreadsheetFactory');
 var domController = require('../../../controller/DomController');
 var View = require('../../../view/SpreadSheetView');
 
@@ -33,9 +33,8 @@ describe('spreadsheet-template', function () {
     });
 
     it('adding spreadsheet object adds spreadsheet-template to dom',function () {
-        var factory = new Factory();
-        var spread = factory.spreadsheet();
-        domController.appendDefaultTemplateToSelector();
+        var spread = factory.spreadsheet(10,10);
+        domController.appendDefaultTemplateToSelector(spread);
         expect(document.querySelector('.spreadsheet')).to.exist;
         document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
     });
@@ -57,7 +56,7 @@ describe('DomController', function () {
 
 describe('SpreadSheetView', function () {
     it('should create SpreadSheet in dom containing 10 elements of row class', function () {
-        var spread = new Factory().spreadsheet();
+        var spread = factory.spreadsheet();
         var view = new View(spread);
         view.update();
         expect(document.querySelector(".spreadsheet")).to.length(10);

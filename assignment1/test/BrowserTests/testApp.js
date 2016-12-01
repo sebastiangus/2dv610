@@ -8,6 +8,14 @@ var row = factory.row();
 function DomController() {
 }
 
+DomController.prototype.appendDefaultTemplateToSelector = function(obj, selector){
+    var _selector = selector || 'body';
+    var id = this.getTemplateIdForObject(obj);
+    var node = this.getTemplateNodeById(id);
+    var appendToElement = document.querySelector(_selector);
+    appendToElement.appendChild(node);
+};
+
 DomController.prototype.getImportedTemplates = function () {
     var templates = document.querySelector('link[rel=import]');
     var importedHtml = templates.import;
@@ -15,18 +23,17 @@ DomController.prototype.getImportedTemplates = function () {
 };
 
 DomController.prototype.getTemplateNodeById = function (selector) {
+    //validate that id string starts with hash, else add hash.
+    if(selector[0] !== "#"){
+        selector = "#" + selector;
+    }
+
     var templates = this.getImportedTemplates();
     var selectedTemplate = templates.querySelector(selector).content;
     var node = document.importNode(selectedTemplate, true);
     return node;
 };
 
-DomController.prototype.appendDefaultTemplateToSelector = function(selector){
-    var _selector = selector || 'body';
-    var node = this.getTemplateNodeById('#spreadsheet-template');
-    var appendToElement = document.querySelector(_selector);
-    appendToElement.appendChild(node);
-};
 
 
 DomController.prototype.getTemplateIdForObject = function (input) {
@@ -440,7 +447,7 @@ module.exports = new SpreadSheetFactory();
 var expect = chai.expect;
 var should = chai.should();
 chai.use(require('chai-dom'));
-var Factory = require('../../../model/SpreadsheetFactory');
+var factory = require('../../../model/SpreadsheetFactory');
 var domController = require('../../../controller/DomController');
 var View = require('../../../view/SpreadSheetView');
 
@@ -470,9 +477,8 @@ describe('spreadsheet-template', function () {
     });
 
     it('adding spreadsheet object adds spreadsheet-template to dom',function () {
-        var factory = new Factory();
-        var spread = factory.spreadsheet();
-        domController.appendDefaultTemplateToSelector();
+        var spread = factory.spreadsheet(10,10);
+        domController.appendDefaultTemplateToSelector(spread);
         expect(document.querySelector('.spreadsheet')).to.exist;
         document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
     });
@@ -494,7 +500,7 @@ describe('DomController', function () {
 
 describe('SpreadSheetView', function () {
     it('should create SpreadSheet in dom containing 10 elements of row class', function () {
-        var spread = new Factory().spreadsheet();
+        var spread = factory.spreadsheet();
         var view = new View(spread);
         view.update();
         expect(document.querySelector(".spreadsheet")).to.length(10);
@@ -526,8 +532,8 @@ SpreadSheetView.prototype.update = function () {
 
 SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
     var fragment = document.createDocumentFragment();
+    var spreadElement = domController.get(this.spreadSheet);
     this.spreadSheet.rows.forEach(function (row) {
-
     });
 };
 

@@ -27,5 +27,4 @@ describe('DomController',function () {
     it('should return false object without getTemplateId-method',function () {
         expect(domController.getTemplateIdForObject(domController)).to.equal(false);
     });
-
 });
