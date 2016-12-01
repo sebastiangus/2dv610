@@ -16,14 +16,20 @@ SpreadSheetView.prototype.addListenersToSubject = function () {
 };
 
 SpreadSheetView.prototype.update = function () {
-    this.createDocFragmentFromSpreadSheet();
+    var fragment = this.createDocFragmentFromSpreadSheet();
+    requestAnimationFrame(function () {
+       document.querySelector('body').appendChild(fragment);
+    });
 };
 
 SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
-    var fragment = document.createDocumentFragment();
-    var spreadElement = domController.get(this.spreadSheet);
+    var fragment = domController.getElementForObject(this.spreadSheet);
     this.spreadSheet.rows.forEach(function (row) {
+        var rowElement = domController.getElementForObject(row);
+        fragment.firstElementChild.appendChild(rowElement);
     });
+
+    return fragment;
 };
 
 

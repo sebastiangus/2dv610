@@ -56,10 +56,14 @@ describe('DomController', function () {
 
 describe('SpreadSheetView', function () {
     it('should create SpreadSheet in dom containing 10 elements of row class', function () {
-        var spread = factory.spreadsheet();
+        var spread = factory.spreadsheet(10);
         var view = new View(spread);
         view.update();
-        expect(document.querySelector(".spreadsheet")).to.length(10);
+        var spreadElement = document.querySelector(".spreadsheet");
+        requestAnimationFrame(function () {
+            expect(document.querySelector('.spreadsheet')).to.have.length(10);
+        });
     });
-
 });
+
+

@@ -8,6 +8,7 @@ var row = factory.row();
 function DomController() {
 }
 
+
 DomController.prototype.appendDefaultTemplateToSelector = function(obj, selector){
     var _selector = selector || 'body';
     var id = this.getTemplateIdForObject(obj);
@@ -16,11 +17,19 @@ DomController.prototype.appendDefaultTemplateToSelector = function(obj, selector
     appendToElement.appendChild(node);
 };
 
+DomController.prototype.getElementForObject = function (obj) {
+    var id = this.getTemplateIdForObject(obj);
+    var element = this.getTemplateNodeById(id);
+    return element;
+};
+
+
 DomController.prototype.getImportedTemplates = function () {
     var templates = document.querySelector('link[rel=import]');
     var importedHtml = templates.import;
     return importedHtml;
 };
+
 
 DomController.prototype.getTemplateNodeById = function (selector) {
     var validatedSelector = this.getValidatedIdStringStartingWithHash(selector);
@@ -29,7 +38,6 @@ DomController.prototype.getTemplateNodeById = function (selector) {
     var node = document.importNode(selectedTemplate, true);
     return node;
 };
-
 
 
 DomController.prototype.getTemplateIdForObject = function (input) {
@@ -504,13 +512,17 @@ describe('DomController', function () {
 
 describe('SpreadSheetView', function () {
     it('should create SpreadSheet in dom containing 10 elements of row class', function () {
-        var spread = factory.spreadsheet();
+        var spread = factory.spreadsheet(10);
         var view = new View(spread);
         view.update();
-        expect(document.querySelector(".spreadsheet")).to.length(10);
+        var spreadElement = document.querySelector(".spreadsheet");
+        requestAnimationFrame(function () {
+            expect(document.querySelector('.spreadsheet')).to.have.length(10);
+        });
     });
-
 });
+
+
 
 },{"../../../controller/DomController":1,"../../../model/SpreadsheetFactory":5,"../../../view/SpreadSheetView":8,"chai-dom":6}],8:[function(require,module,exports){
 var SpreadSheet = require('../model/SpreadSheet');
@@ -531,14 +543,20 @@ SpreadSheetView.prototype.addListenersToSubject = function () {
 };
 
 SpreadSheetView.prototype.update = function () {
-    this.createDocFragmentFromSpreadSheet();
+    var fragment = this.createDocFragmentFromSpreadSheet();
+    requestAnimationFrame(function () {
+       document.querySelector('body').appendChild(fragment);
+    });
 };
 
 SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
-    var fragment = document.createDocumentFragment();
-    var spreadElement = domController.get(this.spreadSheet);
+    var fragment = domController.getElementForObject(this.spreadSheet);
     this.spreadSheet.rows.forEach(function (row) {
+        var rowElement = domController.getElementForObject(row);
+        fragment.firstElementChild.appendChild(rowElement);
     });
+
+    return fragment;
 };
 
 

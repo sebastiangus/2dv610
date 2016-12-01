@@ -1,8 +1,7 @@
 var domController = require('./controller/DomController');
-var SpreadSheetFactory = require('./model/SpreadsheetFactory');
-var spreadFactory = new SpreadSheetFactory();
+var spreadSheetFactory = require('./model/SpreadsheetFactory');
 var View = require('./view/SpreadSheetView');
 
-var spread = spreadFactory.spreadsheet(10,10);
+var spread = spreadSheetFactory.spreadsheet(10,10);
 var view = new View(spread);
 view.update();

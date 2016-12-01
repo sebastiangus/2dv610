@@ -7,6 +7,7 @@ var row = factory.row();
 function DomController() {
 }
 
+
 DomController.prototype.appendDefaultTemplateToSelector = function(obj, selector){
     var _selector = selector || 'body';
     var id = this.getTemplateIdForObject(obj);
@@ -15,11 +16,19 @@ DomController.prototype.appendDefaultTemplateToSelector = function(obj, selector
     appendToElement.appendChild(node);
 };
 
+DomController.prototype.getElementForObject = function (obj) {
+    var id = this.getTemplateIdForObject(obj);
+    var element = this.getTemplateNodeById(id);
+    return element;
+};
+
+
 DomController.prototype.getImportedTemplates = function () {
     var templates = document.querySelector('link[rel=import]');
     var importedHtml = templates.import;
     return importedHtml;
 };
+
 
 DomController.prototype.getTemplateNodeById = function (selector) {
     var validatedSelector = this.getValidatedIdStringStartingWithHash(selector);
@@ -28,7 +37,6 @@ DomController.prototype.getTemplateNodeById = function (selector) {
     var node = document.importNode(selectedTemplate, true);
     return node;
 };
-
 
 
 DomController.prototype.getTemplateIdForObject = function (input) {
