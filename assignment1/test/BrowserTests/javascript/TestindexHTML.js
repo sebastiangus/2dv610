@@ -61,13 +61,15 @@ describe('SpreadSheetView', function () {
         view.update();
         requestAnimationFrame(function () {
             expect(document.querySelector('.spreadsheet')).to.have.length(10);
-            //remove .spreadsheet element, to clean dom
-            document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
         });
 
     });
 
     it('should create SpreadSheet in dom containing row element containing 10 elements', function () {
+        //remove .spreadsheet element, to clean dom
+        requestAnimationFrame(function () {
+            document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
+        });
         var spread = factory.spreadsheet(1,10);
         var view = new View(spread);
         view.update();

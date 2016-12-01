@@ -24,11 +24,16 @@ SpreadSheetView.prototype.update = function () {
 
 SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
     var fragment = domController.getElementForObject(this.spreadSheet);
+
     this.spreadSheet.rows.forEach(function (row) {
+
         var rowElement = domController.getElementForObject(row);
+        row.cells.forEach(function (cell, b) {
+            var cellElement = domController.getElementForObject(cell);
+            rowElement.querySelector('.row').appendChild(cellElement);
+        });
         fragment.firstElementChild.appendChild(rowElement);
     });
-
     return fragment;
 };
 

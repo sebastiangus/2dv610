@@ -517,13 +517,15 @@ describe('SpreadSheetView', function () {
         view.update();
         requestAnimationFrame(function () {
             expect(document.querySelector('.spreadsheet')).to.have.length(10);
-            //remove .spreadsheet element, to clean dom
-            document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
         });
 
     });
 
     it('should create SpreadSheet in dom containing row element containing 10 elements', function () {
+        //remove .spreadsheet element, to clean dom
+        requestAnimationFrame(function () {
+            document.querySelector('body').removeChild(document.querySelector('.spreadsheet'));
+        });
         var spread = factory.spreadsheet(1,10);
         var view = new View(spread);
         view.update();
@@ -563,11 +565,16 @@ SpreadSheetView.prototype.update = function () {
 
 SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
     var fragment = domController.getElementForObject(this.spreadSheet);
+
     this.spreadSheet.rows.forEach(function (row) {
+
         var rowElement = domController.getElementForObject(row);
+        row.cells.forEach(function (cell, b) {
+            var cellElement = domController.getElementForObject(cell);
+            rowElement.querySelector('.row').appendChild(cellElement);
+        });
         fragment.firstElementChild.appendChild(rowElement);
     });
-
     return fragment;
 };
 
