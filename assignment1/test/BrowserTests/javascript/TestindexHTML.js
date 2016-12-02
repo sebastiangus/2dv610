@@ -52,15 +52,15 @@ describe('DomController', function () {
         template.should.be.instanceOf(Node)
     });
 
+    it('should return template string for cell-input', function () {
+        expect(domController.getTemplateNodeById('cell-input-template')).not.to.equal(false);
+    });
+
     it('should add element of class cell-input to dom', function () {
-       var cell = factory.cell();
+        var cell = factory.cell();
         domController.activateCellForInput(cell);
         expect(document.querySelector('.cell-input')).to.exist;
     });
-
-    it('should return template string for cell-input', function () {
-        expect(domController.getTemplateNodeById('cell-input-template')).not.to.equal(false);
-});
 });
 
 

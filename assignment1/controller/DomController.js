@@ -59,7 +59,8 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
 };
 
 DomController.prototype.activateCellForInput = function (cell) {
-
+    var inputElement = this.getTemplateNodeById('cell-input-template');
+    document.querySelector('body').appendChild(inputElement);
 };
 
 module.exports = new DomController();
