@@ -27,4 +27,8 @@ describe('Celltests', function(){
         sut.setValue(5);
         expect(sut.getValue()).to.equal(5);
     })
+
+    it('should have addListener property', function () {
+        sut.should.have.attribute('addListener');
+    })
 });
