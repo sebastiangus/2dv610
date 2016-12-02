@@ -21,4 +21,12 @@ Cell.prototype.addListener = function (listener) {
     this.listeners.push(listener);
 };
 
+Cell.prototype.notifyListeners = function () {
+    if(this.listeners.length > 0) {
+        this.listeners.forEach(function (element) {
+            element();
+        });
+    }
+};
+
 module.exports = Cell;
