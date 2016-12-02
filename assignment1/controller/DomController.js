@@ -58,6 +58,8 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
     return id;
 };
 
+DomController.prototype.activateCellForInput = function () {
 
+};
 
 module.exports = new DomController();

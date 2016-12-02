@@ -59,7 +59,9 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
     return id;
 };
 
+DomController.prototype.activateCellForInput = function () {
 
+};
 
 module.exports = new DomController();
 },{".././model/SpreadsheetFactory":5}],2:[function(require,module,exports){
