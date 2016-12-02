@@ -88,6 +88,14 @@ describe('SpreadSheetView', function () {
             expect(document.querySelector('.row')).to.have.length(10);
         })
     })
+
+    it('should return element of class cell with <p> tag containing "test value"', function () {
+        var cell = factory.cell();
+        cell.setValue('test value');
+        var view = new SpreadSheetView(spread);
+
+        expect(view.createCell(cell)).to.equal('asd');
+    })
 });
 
 

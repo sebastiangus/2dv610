@@ -111,18 +111,20 @@ module.exports = Cell;
 'use strict';
 var Cell = require('../model/Cell');
 
-function Row(nCells) {
+function Row(nCells, listener) {
     var _nCells = typeof nCells === 'number' ? nCells : 1;
 
     this.cells = [];
 
-    this.addCell(_nCells);
+    this.addCell(_nCells, listener);
 }
 
-Row.prototype.addCell = function (nCells) {
+Row.prototype.addCell = function (nCells, listener) {
     var _nCells = nCells || 1;
 
     for(let i = 0; i < _nCells; i += 1){
+        var cell = new Cell();
+        cell.addListener(listener);
         this.cells.push(new Cell());
     }
 };
@@ -155,7 +157,7 @@ SpreadSheet.prototype.getRows = function () {
 
 SpreadSheet.prototype.addRow = function (nRows, nCols) {
     for(let i = 0; i < nRows; i += 1) {
-        this.rows.push(new Row(nCols));
+        this.rows.push(new Row(nCols, this.notifyListeners));
     }
 
     this.notifyListeners();
@@ -570,6 +572,14 @@ describe('SpreadSheetView', function () {
             expect(document.querySelector('.spreadsheet')).to.have.length(1);
             expect(document.querySelector('.row')).to.have.length(10);
         })
+    })
+
+    it('should return element of class cell with <p> tag containing "test value"', function () {
+        var cell = factory.cell();
+        cell.setValue('test value');
+        var view = new SpreadSheetView(spread);
+
+        expect(view.createCell(cell)).to.equal('asd');
     })
 });
 

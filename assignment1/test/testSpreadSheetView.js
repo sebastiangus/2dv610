@@ -3,6 +3,7 @@ var chai =require('chai');
 var SpreadSheet = require('../model/SpreadSheet');
 var SpreadSheetView = require('.././view/SpreadSheetView');
 var Row = require('../model/Row');
+var Cell = require('../model/Cell');
 var sinon = require('sinon');
 
 var expect = chai.expect;
@@ -53,7 +54,6 @@ describe('SpreadSheetView Tests',function () {
         spread.notifyListeners();
         assert(view.update.calledOnce);
     });
-
 
 
 });

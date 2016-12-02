@@ -18,7 +18,7 @@ SpreadSheet.prototype.getRows = function () {
 
 SpreadSheet.prototype.addRow = function (nRows, nCols) {
     for(let i = 0; i < nRows; i += 1) {
-        this.rows.push(new Row(nCols));
+        this.rows.push(new Row(nCols, this.notifyListeners));
     }
 
     this.notifyListeners();

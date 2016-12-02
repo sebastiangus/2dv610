@@ -31,5 +31,5 @@ describe('DomController',function () {
     it('should have activateCellForInput method', function () {
         var cell = factory.cell();
        domController.should.have.property('activateCellForInput');
-    })
+    });
 });
