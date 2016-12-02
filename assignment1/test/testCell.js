@@ -3,6 +3,7 @@
  */
 var chai = require('chai');
 var Cell = require('../model/Cell');
+var sinon = require('sinon');
 
 var expect = chai.expect;
 var assert = chai.assert;
@@ -31,4 +32,30 @@ describe('Celltests', function(){
     it('should have addListener property', function () {
         sut.should.have.property('addListener');
     })
+
+    it('addListener should push listener to listeners array', function () {
+        var listener = sinon.spy();
+        sut.addListener(listener);
+
+        expect(sut).to.have.property('listeners');
+        sut.listeners.should.have.length(1);
+    });
+
+    it('should invoke 1 registered listener', function () {
+        var testListener = sinon.spy();
+        sut.addListener(testListener);
+        sut.notifyListeners();
+        assert(testListener.calledOnce);
+    });
+
+    it('should invoke 5 registered listeners', function () {
+        var testListener = sinon.spy();
+        sut.addListener(testListener); //1
+        sut.addListener(testListener); //2
+        sut.addListener(testListener); //3
+        sut.addListener(testListener); //4
+        sut.addListener(testListener); //5
+        sut.notifyListeners();
+        assert(testListener.callCount == 5)
+    });
 });
