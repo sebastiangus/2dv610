@@ -27,4 +27,9 @@ describe('DomController',function () {
     it('should return false object without getTemplateId-method',function () {
         expect(domController.getTemplateIdForObject(domController)).to.equal(false);
     });
+
+    it('should have activateCellForInput method', function () {
+        var cell = factory.cell();
+        expect(domController.activateCellForInput(cell));
+    })
 });

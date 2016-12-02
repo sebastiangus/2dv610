@@ -59,6 +59,8 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
     return id;
 };
 
+
+
 module.exports = new DomController();
 },{".././model/SpreadsheetFactory":5}],2:[function(require,module,exports){
 'use strict';
@@ -569,7 +571,6 @@ SpreadSheetView.prototype.createDocFragmentFromSpreadSheet = function(){
         rowElement = this.createRow(row);
         spreadSheet.firstElementChild.appendChild(rowElement);
     }.bind(this));
-
     return spreadSheet;
 };
 
@@ -586,7 +587,18 @@ SpreadSheetView.prototype.createRow = function (row) {
 
 SpreadSheetView.prototype.createCell = function (cell) {
     var cellElement = domController.getElementForObject(cell);
-    return cellElement;
+    var fragment = this.addListenersToCell(cellElement);
+    return fragment;
+};
+
+SpreadSheetView.prototype.addListenersToCell = function (cell) {
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(cell);
+    fragment.querySelector('.cell').addEventListener('click', function () {
+        domController.activateCellForInput(cell);
+    }.bind(cell));
+
+    return fragment;
 };
 
 

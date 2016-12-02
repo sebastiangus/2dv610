@@ -58,4 +58,6 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
     return id;
 };
 
+
+
 module.exports = new DomController();
