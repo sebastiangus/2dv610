@@ -59,7 +59,7 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
     return id;
 };
 
-DomController.prototype.activateCellForInput = function () {
+DomController.prototype.activateCellForInput = function (cell) {
 
 };
 
@@ -511,6 +511,16 @@ describe('DomController', function () {
         var template = domController.getTemplateNodeById('#spreadsheet-template');
         template.should.be.instanceOf(Node)
     });
+
+    it('should add element of class cell-input to dom', function () {
+       var cell = factory.cell();
+        domController.activateCellForInput(cell);
+        expect(document.querySelector('.cell-input')).to.exist;
+    });
+
+    it('should return template string for cell-input', function () {
+        expect(domController.getTemplateNodeById('cell-input-template')).not.to.equal(false);
+});
 });
 
 

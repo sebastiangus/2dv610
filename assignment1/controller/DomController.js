@@ -58,7 +58,7 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
     return id;
 };
 
-DomController.prototype.activateCellForInput = function () {
+DomController.prototype.activateCellForInput = function (cell) {
 
 };
 
