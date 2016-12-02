@@ -79,6 +79,7 @@ module.exports = new DomController();
 
 function Cell() {
     this.value = null;
+    this.listeners = [];
 }
 
 Cell.prototype.setValue = function (value) {
