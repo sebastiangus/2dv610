@@ -29,6 +29,6 @@ describe('Celltests', function(){
     })
 
     it('should have addListener property', function () {
-        sut.should.have.attribute('addListener');
+        sut.should.have.property('addListener');
     })
 });

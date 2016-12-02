@@ -93,6 +93,10 @@ Cell.prototype.getTemplateId = function () {
     return 'cell-template'
 };
 
+Cell.prototype.addListener = function () {
+
+};
+
 module.exports = Cell;
 },{}],3:[function(require,module,exports){
 'use strict';

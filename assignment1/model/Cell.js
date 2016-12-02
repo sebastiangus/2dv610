@@ -16,4 +16,8 @@ Cell.prototype.getTemplateId = function () {
     return 'cell-template'
 };
 
+Cell.prototype.addListener = function () {
+
+};
+
 module.exports = Cell;
