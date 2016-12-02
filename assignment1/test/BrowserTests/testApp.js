@@ -94,8 +94,8 @@ Cell.prototype.getTemplateId = function () {
     return 'cell-template'
 };
 
-Cell.prototype.addListener = function () {
-
+Cell.prototype.addListener = function (listener) {
+    this.listeners.push(listener);
 };
 
 module.exports = Cell;
