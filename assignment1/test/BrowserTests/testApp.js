@@ -60,8 +60,17 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
 };
 
 DomController.prototype.activateCellForInput = function (cell) {
+    var documentFragment = document.createDocumentFragment();
     var inputElement = this.getTemplateNodeById('cell-input-template');
-    document.querySelector('body').appendChild(inputElement);
+    documentFragment.appendChild(inputElement);
+    documentFragment.querySelector('.cell-input').addEventListener('keyup', function (event) {
+        console.log(this);
+        console.log(event.target.value);
+        this.setValue(event.target.value);
+    }.bind(cell));
+
+    document.querySelector('body').appendChild(documentFragment);
+    document.querySelector('.cell-input').focus();
 };
 
 module.exports = new DomController();
@@ -600,19 +609,21 @@ SpreadSheetView.prototype.createRow = function (row) {
 
 SpreadSheetView.prototype.createCell = function (cell) {
     var cellElement = domController.getElementForObject(cell);
-    var fragment = this.addListenersToCell(cellElement);
+    var fragment = this.addListenersToCell(cellElement, cell);
     return fragment;
 };
 
-SpreadSheetView.prototype.addListenersToCell = function (cell) {
+SpreadSheetView.prototype.addListenersToCell = function (cellElement, cell) {
     var fragment = document.createDocumentFragment();
-    fragment.appendChild(cell);
+    fragment.appendChild(cellElement);
     fragment.querySelector('.cell').addEventListener('click', function () {
         domController.activateCellForInput(cell);
-    }.bind(cell));
+    });
 
     return fragment;
 };
+
+
 
 
 module.exports = SpreadSheetView;

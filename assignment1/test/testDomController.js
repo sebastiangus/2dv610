@@ -30,6 +30,6 @@ describe('DomController',function () {
 
     it('should have activateCellForInput method', function () {
         var cell = factory.cell();
-        expect(domController.activateCellForInput(cell));
+       domController.should.have.property('activateCellForInput');
     })
 });

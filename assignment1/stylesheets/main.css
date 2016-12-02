@@ -32,3 +32,11 @@ body {
     float: left;
     margin: 1px;
 }
+
+.cell-input {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 200px;
+    height: 40px;
+}

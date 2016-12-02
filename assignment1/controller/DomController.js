@@ -59,8 +59,17 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
 };
 
 DomController.prototype.activateCellForInput = function (cell) {
+    var documentFragment = document.createDocumentFragment();
     var inputElement = this.getTemplateNodeById('cell-input-template');
-    document.querySelector('body').appendChild(inputElement);
+    documentFragment.appendChild(inputElement);
+    documentFragment.querySelector('.cell-input').addEventListener('keyup', function (event) {
+        console.log(this);
+        console.log(event.target.value);
+        this.setValue(event.target.value);
+    }.bind(cell));
+
+    document.querySelector('body').appendChild(documentFragment);
+    document.querySelector('.cell-input').focus();
 };
 
 module.exports = new DomController();
