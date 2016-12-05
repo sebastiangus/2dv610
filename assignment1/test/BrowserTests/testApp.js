@@ -83,6 +83,7 @@ function Cell() {
 
 Cell.prototype.setValue = function (value) {
     this.value = value;
+    this.notifyListeners();
 };
 
 Cell.prototype.getValue = function () {
