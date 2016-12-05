@@ -62,6 +62,7 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
 DomController.prototype.activateCellForInput = function (cell) {
     var documentFragment = document.createDocumentFragment();
     var inputElement = this.getTemplateNodeById('cell-input-template');
+
     documentFragment.appendChild(inputElement);
     documentFragment.querySelector('.cell-input').addEventListener('keyup', function (event) {
         this.setValue(event.target.value);

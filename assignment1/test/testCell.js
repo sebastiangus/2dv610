@@ -58,4 +58,12 @@ describe('Celltests', function(){
         sut.notifyListeners();
         assert(testListener.callCount == 5)
     });
+
+    it('setValue should invoke 1 registered listener', function () {
+        var testListener = sinon.spy();
+        sut.addListener(testListener); //1
+        sut.setValue(1);
+        assert(testListener.calledOnce);
+
+    });
 });
