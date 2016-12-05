@@ -18,7 +18,7 @@ SpreadSheetView.prototype.addListenersToSubject = function () {
 SpreadSheetView.prototype.update = function () {
     var fragment = this.createDocFragmentFromSpreadSheet();
     requestAnimationFrame(function () {
-       document.querySelector('body').appendChild(fragment);
+        document.querySelector('body').appendChild(fragment);
     });
 };
 
@@ -37,6 +37,7 @@ SpreadSheetView.prototype.createRow = function (row) {
     row.cells.forEach(function (cell) {
         var cellElement = this.createCell(cell);
         rowElement.querySelector('.row').appendChild(cellElement);
+        this.coupleElementWithObject(rowElement, cell);
     }.bind(this));
 
     return rowElement
@@ -45,7 +46,8 @@ SpreadSheetView.prototype.createRow = function (row) {
 SpreadSheetView.prototype.createCell = function (cell) {
     var cellElement = domController.getElementForObject(cell);
     var fragment = this.addListenersToCell(cellElement, cell);
-    fragment.querySelector('p').textContent = cell.getValue();
+    fragment.querySelector('p').innerHTML = cell.getValue();
+    cell.addListener(this.updateCellElementTextContent.bind(cell));
     return fragment;
 };
 
@@ -55,8 +57,15 @@ SpreadSheetView.prototype.addListenersToCell = function (cellElement, cell) {
     fragment.querySelector('.cell').addEventListener('click', function () {
         domController.activateCellForInput(cell);
     });
-
     return fragment;
+};
+
+SpreadSheetView.prototype.updateCellElementTextContent = function (cell) {
+    this.element.querySelector('p').textContent = this.getValue();
+};
+
+SpreadSheetView.prototype.coupleElementWithObject = function(element, cell){
+    cell.element = element.querySelector('.row').lastChild;
 };
 
 

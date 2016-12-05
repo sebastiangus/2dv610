@@ -3,6 +3,7 @@
 function Cell() {
     this.value = null;
     this.listeners = [];
+    this.element = null;
 }
 
 Cell.prototype.setValue = function (value) {

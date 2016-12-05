@@ -62,14 +62,15 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
 DomController.prototype.activateCellForInput = function (cell) {
     var documentFragment = document.createDocumentFragment();
     var inputElement = this.getTemplateNodeById('cell-input-template');
-
     documentFragment.appendChild(inputElement);
-    documentFragment.querySelector('.cell-input').addEventListener('keyup', function (event) {
-        this.setValue(event.target.value);
-    }.bind(cell));
-
+    documentFragment.querySelector('.cell-input').value = cell.getValue();
+    documentFragment.querySelector('.cell-input').addEventListener('keyup', this.captureInput.bind(cell));
     document.querySelector('body').appendChild(documentFragment);
     document.querySelector('.cell-input').focus();
+};
+
+DomController.prototype.captureInput = function () {
+    this.setValue(event.target.value);
 };
 
 module.exports = new DomController();
@@ -79,6 +80,7 @@ module.exports = new DomController();
 function Cell() {
     this.value = null;
     this.listeners = [];
+    this.element = null;
 }
 
 Cell.prototype.setValue = function (value) {
@@ -607,7 +609,7 @@ SpreadSheetView.prototype.addListenersToSubject = function () {
 SpreadSheetView.prototype.update = function () {
     var fragment = this.createDocFragmentFromSpreadSheet();
     requestAnimationFrame(function () {
-       document.querySelector('body').appendChild(fragment);
+        document.querySelector('body').appendChild(fragment);
     });
 };
 
@@ -626,6 +628,7 @@ SpreadSheetView.prototype.createRow = function (row) {
     row.cells.forEach(function (cell) {
         var cellElement = this.createCell(cell);
         rowElement.querySelector('.row').appendChild(cellElement);
+        this.coupleElementWithObject(rowElement, cell);
     }.bind(this));
 
     return rowElement
@@ -634,7 +637,8 @@ SpreadSheetView.prototype.createRow = function (row) {
 SpreadSheetView.prototype.createCell = function (cell) {
     var cellElement = domController.getElementForObject(cell);
     var fragment = this.addListenersToCell(cellElement, cell);
-    fragment.querySelector('p').textContent = cell.getValue();
+    fragment.querySelector('p').innerHTML = cell.getValue();
+    cell.addListener(this.updateCellElementTextContent.bind(cell));
     return fragment;
 };
 
@@ -644,8 +648,15 @@ SpreadSheetView.prototype.addListenersToCell = function (cellElement, cell) {
     fragment.querySelector('.cell').addEventListener('click', function () {
         domController.activateCellForInput(cell);
     });
-
     return fragment;
+};
+
+SpreadSheetView.prototype.updateCellElementTextContent = function (cell) {
+    this.element.querySelector('p').textContent = this.getValue();
+};
+
+SpreadSheetView.prototype.coupleElementWithObject = function(element, cell){
+    cell.element = element.querySelector('.row').lastChild;
 };
 
 

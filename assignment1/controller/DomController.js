@@ -61,14 +61,15 @@ DomController.prototype.getValidatedIdStringStartingWithHash = function (id) {
 DomController.prototype.activateCellForInput = function (cell) {
     var documentFragment = document.createDocumentFragment();
     var inputElement = this.getTemplateNodeById('cell-input-template');
-
     documentFragment.appendChild(inputElement);
-    documentFragment.querySelector('.cell-input').addEventListener('keyup', function (event) {
-        this.setValue(event.target.value);
-    }.bind(cell));
-
+    documentFragment.querySelector('.cell-input').value = cell.getValue();
+    documentFragment.querySelector('.cell-input').addEventListener('keyup', this.captureInput.bind(cell));
     document.querySelector('body').appendChild(documentFragment);
     document.querySelector('.cell-input').focus();
+};
+
+DomController.prototype.captureInput = function () {
+    this.setValue(event.target.value);
 };
 
 module.exports = new DomController();
