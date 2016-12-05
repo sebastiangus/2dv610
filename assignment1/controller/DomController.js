@@ -64,6 +64,11 @@ DomController.prototype.activateCellForInput = function (cell) {
     documentFragment.appendChild(inputElement);
     documentFragment.querySelector('.cell-input').value = cell.getValue();
     documentFragment.querySelector('.cell-input').addEventListener('keyup', this.captureInput.bind(cell));
+
+    documentFragment.querySelector('.cell-input').addEventListener('blur',function () {
+        document.querySelector('body').removeChild(document.querySelector('.cell-input'))
+    });
+    
     document.querySelector('body').appendChild(documentFragment);
     document.querySelector('.cell-input').focus();
 };
@@ -71,5 +76,7 @@ DomController.prototype.activateCellForInput = function (cell) {
 DomController.prototype.captureInput = function () {
     this.setValue(event.target.value);
 };
+
+
 
 module.exports = new DomController();
