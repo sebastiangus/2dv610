@@ -13,7 +13,7 @@ describe('cell-template', function () {
         //use import to get html-document
         var importedHtml = document.querySelector('link[rel=import]');
         var content = importedHtml.import;
-        content.querySelector('#cell-template').should.have.html('<div class="cell"></div>');
+        content.querySelector('#cell-template').should.have.html('<div class="cell"><p></p></div>');
     });
 });
 
@@ -87,14 +87,15 @@ describe('SpreadSheetView', function () {
             expect(document.querySelector('.spreadsheet')).to.have.length(1);
             expect(document.querySelector('.row')).to.have.length(10);
         })
-    })
+    });
 
-    it('should return element of class cell with <p> tag containing "test value"', function () {
+    it('should return element of class cell with <p> tag containing textContent "test value"', function () {
         var cell = factory.cell();
+        var spread = factory.spreadsheet();
         cell.setValue('test value');
-        var view = new SpreadSheetView(spread);
-
-        expect(view.createCell(cell)).to.equal('asd');
+        var view = new View(spread);
+        var cell = view.createCell(cell);
+        cell.querySelector('p').should.contain.html('test value');
     })
 });
 

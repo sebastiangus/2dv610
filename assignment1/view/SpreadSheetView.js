@@ -45,6 +45,7 @@ SpreadSheetView.prototype.createRow = function (row) {
 SpreadSheetView.prototype.createCell = function (cell) {
     var cellElement = domController.getElementForObject(cell);
     var fragment = this.addListenersToCell(cellElement, cell);
+    fragment.querySelector('p').textContent = cell.getValue();
     return fragment;
 };
 

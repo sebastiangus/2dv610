@@ -63,8 +63,6 @@ DomController.prototype.activateCellForInput = function (cell) {
     var inputElement = this.getTemplateNodeById('cell-input-template');
     documentFragment.appendChild(inputElement);
     documentFragment.querySelector('.cell-input').addEventListener('keyup', function (event) {
-        console.log(this);
-        console.log(event.target.value);
         this.setValue(event.target.value);
     }.bind(cell));
 
