@@ -6,6 +6,7 @@ function SeriesCreator() {
 SeriesCreator.prototype.suggestSeriesFormulaFromInput = function () {
     return {
         valueType: this.getValueType(arguments),
+        operator: null  
     };
 };
 
