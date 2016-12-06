@@ -62,13 +62,13 @@ DomController.prototype.activateCellForInput = function (cell) {
     var documentFragment = document.createDocumentFragment();
     var inputElement = this.getTemplateNodeById('cell-input-template');
     documentFragment.appendChild(inputElement);
+
     documentFragment.querySelector('.cell-input').value = cell.getValue();
     documentFragment.querySelector('.cell-input').addEventListener('keyup', this.captureInput.bind(cell));
-
     documentFragment.querySelector('.cell-input').addEventListener('blur',function () {
         document.querySelector('body').removeChild(document.querySelector('.cell-input'))
     });
-    
+
     document.querySelector('body').appendChild(documentFragment);
     document.querySelector('.cell-input').focus();
 };

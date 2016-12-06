@@ -40,3 +40,8 @@ body {
     width: 200px;
     height: 40px;
 }
+
+.cell p {
+    margin-top: 10%;
+    margin-left: 10%;
+}
