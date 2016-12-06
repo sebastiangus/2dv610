@@ -4,7 +4,9 @@ function SeriesCreator() {
 }
 
 SeriesCreator.prototype.suggestSeriesFormulaFromInput = function () {
-    return {valueType: this.getValueType(arguments)};
+    return {
+        valueType: this.getValueType(arguments),
+    };
 };
 
 SeriesCreator.prototype.getValueType = function () {

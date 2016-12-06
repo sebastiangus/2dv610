@@ -27,5 +27,9 @@ describe('SeriesCreator Test', function () {
         expect(sut.suggestSeriesFormulaFromInput("text", "text1", "text3").valueType).to.equal(String);
     });
 
+    it('should return object with property operator', function () {
+        expect(sut.suggestSeriesFormulaFromInput()).to.have.property('operator');
+    });
+
 
 });
