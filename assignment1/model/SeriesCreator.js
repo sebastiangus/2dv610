@@ -4,7 +4,7 @@ function SeriesCreator() {
 }
 
 SeriesCreator.prototype.suggestSeriesFormulaFromInput = function () {
-    return {valueType: 1};
+    return {valueType: 'numbers'};
 };
 
 module.exports = SeriesCreator;

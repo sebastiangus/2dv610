@@ -22,5 +22,4 @@ describe('SeriesCreator Test', function () {
     it('should return object with property "valueType" containing number', function () {
         expect(sut.suggestSeriesFormulaFromInput(100).valueType).to.equal('numbers');
     });
-
 });
