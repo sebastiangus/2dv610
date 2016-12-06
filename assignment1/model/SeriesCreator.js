@@ -4,26 +4,20 @@ function SeriesCreator() {
 }
 
 SeriesCreator.prototype.suggestSeriesFormulaFromInput = function () {
+    var arg = Array.from(arguments);
+
     return {
-        valueType: this.getValueType(arguments),
-        operator: null  
-    };
+        valueType: this.getHomogenType(arg),
+        operator: this.getOperator(arg)
+    }
 };
 
-SeriesCreator.prototype.getValueType = function () {
-    var arg = Array.from(arguments);
-    var valueType = this.getHomogenType(arg);
-    return valueType;
-};
+
 
 SeriesCreator.prototype.getHomogenType = function (args) {
     var type = null;
     for(var arg in args){
-
-        for(var elem in args[arg]){
-
-            var testValue = args[arg][elem].constructor;
-
+            var testValue = args[arg].constructor;
             if(!type){
                 type = testValue;
             }
@@ -32,10 +26,12 @@ SeriesCreator.prototype.getHomogenType = function (args) {
                 type = false;
                 break;
             }
-        }
     }
 
     return type;
+};
+
+SeriesCreator.prototype.getOperator = function () {
 
 };
 
