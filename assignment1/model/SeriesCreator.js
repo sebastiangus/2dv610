@@ -8,11 +8,8 @@ SeriesCreator.prototype.suggestSeriesFormulaFromInput = function () {
 };
 
 SeriesCreator.prototype.getValueType = function () {
-    var valueType = null;
     var arg = Array.from(arguments);
-
-    valueType = this.getHomogenType(arg);
-
+    var valueType = this.getHomogenType(arg);
     return valueType;
 };
 
@@ -36,6 +33,7 @@ SeriesCreator.prototype.getHomogenType = function (args) {
     }
 
     return type;
+
 };
 
 

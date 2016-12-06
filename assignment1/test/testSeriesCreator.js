@@ -19,11 +19,13 @@ describe('SeriesCreator Test', function () {
         expect(sut.suggestSeriesFormulaFromInput()).to.have.property('valueType');
     });
 
-    it('should return object with property "valueType" containing number', function () {
+    it('should return object with property "valueType" equal Number constructor', function () {
         expect(sut.suggestSeriesFormulaFromInput(100).valueType).to.equal(Number);
     });
 
-    it('should return object with property "valueType" containing string', function () {
+    it('should return object with property "valueType" equal String constructor', function () {
         expect(sut.suggestSeriesFormulaFromInput("text", "text1", "text3").valueType).to.equal(String);
     });
+
+
 });
