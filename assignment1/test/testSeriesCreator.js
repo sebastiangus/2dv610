@@ -35,5 +35,10 @@ describe('SeriesCreator Test', function () {
         expect(sut.suggestSeriesFormulaFromInput(10,20,30,40).operator).to.equal('+');
     });
 
+    it('should return object with property operator and value +', function () {
+        expect(sut.suggestSeriesFormulaFromInput(10,20,30,30).operator).to.equal('not available');
+    });
+
+
 
 });
