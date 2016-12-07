@@ -47,6 +47,8 @@ SeriesCreator.prototype.getOperator = function (args) {
 
         if(differenceFromPrevLoop == differenceFromCurrentLoop) {
             valueFromPrevLoop < args[num] ? operator = "+" : operator = "-";
+        } else if(differenceFromCurrentLoop !== null && differenceFromPrevLoop !== differenceFromCurrentLoop) {
+            operator = "not available"
         }
 
         differenceFromPrevLoop = differenceFromCurrentLoop;
