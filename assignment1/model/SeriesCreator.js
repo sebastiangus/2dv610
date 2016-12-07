@@ -33,12 +33,27 @@ SeriesCreator.prototype.getHomogenType = function (args) {
 
 SeriesCreator.prototype.getOperator = function (args) {
     var operator;
-    var prevSum;
-    var checkForDifference;
+    var valueFromPrevLoop;
+    var differenceFromPrevLoop;
+    var differenceFromCurrentLoop;
+
     for(var num in args){
-        checkForDifference == undefined ? checkForDifference = args[num] : checkForDifference = checkForDifference - args[num];
-        console.log(checkForDifference);
+
+        if(valueFromPrevLoop == undefined) {
+            differenceFromCurrentLoop = null
+        } else {
+            differenceFromCurrentLoop = valueFromPrevLoop - args[num];
+        }
+
+        if(differenceFromPrevLoop == differenceFromCurrentLoop) {
+            valueFromPrevLoop < args[num] ? operator = "+" : operator = "-";
+        }
+
+        differenceFromPrevLoop = differenceFromCurrentLoop;
+        valueFromPrevLoop = args[num];
     }
+
+    return operator;
 };
 
 
